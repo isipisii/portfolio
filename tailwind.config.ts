@@ -13,8 +13,15 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        background: "#151418",
+        primary: "#68DC0E",
+        headerText: "#DBEBD1",
+        textMuted: "#9E9F9D",
+        cardBg: "#1C1B1B"
+      },
     },
   },
-  plugins: [],
+  plugins: [require("@codaworks/react-glow/tailwind")],
 };
 export default config;
