@@ -3,9 +3,9 @@ import ProjectCard from "./project-card";
 
 export default function ProjectsSection() {
   return (
-    <section className=" w-full flex justify-center">
+    <section className=" py-[7rem] w-full flex justify-center">
       <div className="w-full max-w-[1200px] grid gap-8">
-        <h2 className="text-headerText leading-8 font-bold text-[32px]">
+        <h2 className="text-headerText leading-8 font-bold text-[32px] md:text-5xl">
           Projects <br />{" "}
           <span className="font-normal text-textMuted text-[25px]">
             These are the projects I&apos;ve built

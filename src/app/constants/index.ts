@@ -22,6 +22,8 @@ import {
   SiGit,
   SiGithub,
   SiPostman,
+  SiReactrouter,
+  SiFigma
 } from "react-icons/si";
 
 import eqph from "../assets/projects/eqph.jpg";
@@ -40,9 +42,11 @@ export const technologies = [
   { name: "ReactJS", icon: SiReact },
   { name: "NextJS", icon: SiNextdotjs },
   { name: "ReactQuery", icon: SiReactquery },
+  { name: "ReactRouter", icon: SiReactrouter},
   { name: "ReactHookForm", icon: SiReacthookform },
   { name: "Npm", icon: SiNpm },
   { name: "Git", icon: SiGit },
+  { name: "Figma", icon: SiFigma },
   { name: "GitHub", icon: SiGithub },
   { name: "Postman", icon: SiPostman },
   { name: "Redux", icon: SiRedux },
@@ -63,6 +67,7 @@ export type TProject = {
   src: StaticImageData;
   description: string;
   repoName: string;
+  technologies: string[]
 };
 
 export const projects = [
@@ -71,24 +76,55 @@ export const projects = [
     src: eqph,
     description: "An earthquake visualizer within the Philippines.",
     repoName: "philippine-eq-visualizer",
+    technologies: ["JavaScript", "ReactJS", "USGS API", "TailwindCSS"],
   },
   {
     name: "Deviary",
     src: deviary,
     description: `A developer's community and diary.`,
     repoName: "deviary",
+    technologies: [
+      "TypeScript",
+      "NextJS",
+      "Prisma",
+      "MongoDB",
+      "NextUI",
+      "Markdown",
+      "REST API",
+      "Tailwind",
+      "PusherJS",
+      "AuthJS",
+      "Uploadthing"
+    ],
   },
   {
     name: "Threads Clone",
     src: threads,
     description: "A Threads clone application.",
     repoName: "sinulid",
+    technologies: [
+      "TypeScript",
+      "ReactJS",
+      "Mongoose",
+      "MongoDB",
+      "ExpressJS",
+      "NodeJS",
+      "TailwindCSS",
+      "JWT",
+      "Redux Toolkit",
+      "Cloudinary"
+    ],
   },
   {
     name: "DHB Porfolio",
     src: dhb,
     description: "A graphic designer's portfolio.",
     repoName: "DHB-portfolio",
+    technologies: [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
   },
   {
     name: "Spotifile",
@@ -96,6 +132,14 @@ export const projects = [
     description:
       "An application inspired by Britanny Chiang's Spotify Profile.",
     repoName: "spotifile",
+    technologies: [
+      "NextJS",
+      "AuthJS",
+      "TailwindCSS",
+      "Redux Toolkit",
+      "JavaScript",
+      "Spotify API"
+    ],
   },
   {
     name: "Ask Bot",
@@ -103,5 +147,11 @@ export const projects = [
     description:
       "A GPT model-powered application. This was created to explore GPT's API.",
     repoName: "ask-bott",
+    technologies: [
+      "ReactJS",
+      "JavaScript",
+      "TailwindCSS",
+      "GPT API",
+    ],
   },
 ];

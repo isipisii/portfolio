@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { technologies } from "../constants";
 import { Glow, GlowCapture } from "@codaworks/react-glow";
 import { IconType } from "react-icons";
 
 export default function TechnologiesSection() {
-  const divEl = useRef<HTMLDivElement | null>(null);
   const [isContainerHovered, setIsContainerHovered] = useState(false);
   const [currentTech, setCurrentTech] = useState<{
     name: string;
@@ -14,19 +13,18 @@ export default function TechnologiesSection() {
   } | null>(null);
 
   return (
-    <section className="w-full flex justify-center py-12">
+    <section className="w-full flex justify-center py-[4rem]">
       <div className=" w-full max-w-[1200px] grid gap-8 relative">
-        <h2 className="text-headerText leading-8 font-bold text-[32px]">
+        <h2 className="text-headerText leading-8 font-bold text-[32px] md:text-5xl">
           Technologies <br />{" "}
           <span className="font-normal text-textMuted text-[25px]">
-            I&apos;ve worked on
+            I&apos;ve worked with
           </span>
         </h2>
         <GlowCapture>
           <Glow>
             <div
               className="flex gap-2 flex-wrap items-center"
-              ref={divEl}
               onMouseEnter={() => setIsContainerHovered(true)}
               onMouseLeave={() => {
                 setIsContainerHovered(false);
@@ -40,7 +38,7 @@ export default function TechnologiesSection() {
                   onMouseEnter={() => {
                     if (isContainerHovered) {
                       setCurrentTech(technology);
-                    } else return
+                    }
                   }}
                 >
                   <technology.icon className="text-white/80 size-[35px]" />
