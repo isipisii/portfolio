@@ -1,6 +1,6 @@
 "use client";
 
-import { just_me_again_down_here } from "../fonts";
+import { just_me_again_down_here } from "../app/fonts";
 import Image from "next/image";
 import HeroLogo from "../assets/hero-logo.svg";
 import Underline from "../assets/underline.svg";
