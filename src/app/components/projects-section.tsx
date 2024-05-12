@@ -1,16 +1,18 @@
 import { projects } from "../constants";
+import SectionTitleMotion from "./motions/section-title-motion";
 import ProjectCard from "./project-card";
+import ProjectContainerMotion from "./motions/project-container-motion";
 
 export default function ProjectsSection() {
   return (
-    <section className=" py-[7rem] w-full flex justify-center">
+    <section id="projects" className=" py-[7rem] w-full flex justify-center">
       <div className="w-full max-w-[1200px] grid gap-8">
-        <h2 className="text-headerText leading-8 font-bold text-[32px] md:text-5xl">
+        <SectionTitleMotion>
           Projects <br />{" "}
           <span className="font-normal text-textMuted text-[25px]">
             These are the projects I&apos;ve built
           </span>
-        </h2>
+        </SectionTitleMotion>
         <div
           className="grid auto-cols-auto grid-flow-row place-items-center gap-12"
           style={{
@@ -18,7 +20,9 @@ export default function ProjectsSection() {
           }}
         >
           {projects.map((project, index) => (
-            <ProjectCard project={project} key={index} />
+            <ProjectContainerMotion key={index}>
+              <ProjectCard project={project} />
+            </ProjectContainerMotion>
           ))}
         </div>
       </div>
