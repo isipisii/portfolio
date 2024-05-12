@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { TProject } from "../constants";
 import { FaRegStar } from "react-icons/fa6";
+import { SiGithub } from "react-icons/si";
+import { FaLink } from "react-icons/fa6";
 
 export async function getRepoStars(repoName: string) {
   const res = await fetch(`https://api.github.com/repos/isipisii/${repoName}`);
@@ -22,11 +24,23 @@ export default async function ProjectCard({ project }: { project: TProject }) {
         className="z-10 rounded-xl border-[#484848]/70 border"
       />
       <div className="z-10 md:self-end grid gap-4 w-full">
-        <div>
-          <h3 className="text-white/90 font-semibold text-3xl">
-            {project.name}
-          </h3>
-          <p className="text-white/80 text-lg">{project.description}</p>
+        <div className="w-full gap-4 items-start flex justify-between">
+          <div>
+            <h3 className="text-white/90 font-semibold text-[28px] md:text-3xl">
+              {project.name}
+            </h3>
+            <p className="text-white/80 text-lg">{project.description}</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <a href={project.repoUrl} target="_blank">
+              <SiGithub className="size-[20px] md:size-[24px] text-white/75 " />
+            </a>
+            {project.siteUrl && (
+              <a href={project.siteUrl} target="_blank">
+                <FaLink className="size-[20px] md:size-[24px] text-white/75 " />
+              </a>
+            )}
+          </div>
         </div>
 
         <div className="flex flex-wrap gap-2 max-w-[400px]">
