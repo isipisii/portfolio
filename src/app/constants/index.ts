@@ -124,7 +124,7 @@ export const projects = [
     siteUrl: "https://deviary.vercel.app/",
   },
   {
-    name: "DHB Porfolio",
+    name: "DHB Portfolio",
     src: dhb,
     description: "A graphic designer's portfolio.",
     repoName: "DHB-portfolio",
