@@ -60,3 +60,45 @@ html {
   left: 22px;
   animation-duration: 441ms;
 }
+
+.wrapper {
+  position: relative;
+}
+
+.marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.marquee2 {
+  animation: marquee2 30s linear infinite;
+  position: absolute;
+  top: 0;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  margin: 0 4px;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee2 {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
