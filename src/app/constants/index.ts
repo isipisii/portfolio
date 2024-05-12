@@ -23,7 +23,7 @@ import {
   SiGithub,
   SiPostman,
   SiReactrouter,
-  SiFigma
+  SiFigma,
 } from "react-icons/si";
 
 import eqph from "../assets/projects/eqph.jpg";
@@ -42,7 +42,7 @@ export const technologies = [
   { name: "ReactJS", icon: SiReact },
   { name: "NextJS", icon: SiNextdotjs },
   { name: "ReactQuery", icon: SiReactquery },
-  { name: "ReactRouter", icon: SiReactrouter},
+  { name: "ReactRouter", icon: SiReactrouter },
   { name: "ReactHookForm", icon: SiReacthookform },
   { name: "Npm", icon: SiNpm },
   { name: "Git", icon: SiGit },
@@ -67,7 +67,9 @@ export type TProject = {
   src: StaticImageData;
   description: string;
   repoName: string;
-  technologies: string[]
+  technologies: string[];
+  repoUrl?: string;
+  siteUrl?: string;
 };
 
 export const projects = [
@@ -77,6 +79,8 @@ export const projects = [
     description: "An earthquake visualizer within the Philippines.",
     repoName: "philippine-eq-visualizer",
     technologies: ["JavaScript", "ReactJS", "USGS API", "TailwindCSS"],
+    repoUrl: "https://github.com/isipisii/philippine-eq-visualizer",
+    siteUrl: "https://philippine-eq-visualizer.vercel.app/",
   },
   {
     name: "Deviary",
@@ -94,8 +98,10 @@ export const projects = [
       "Tailwind",
       "PusherJS",
       "AuthJS",
-      "Uploadthing"
+      "Uploadthing",
     ],
+    repoUrl: "https://github.com/isipisii/deviary",
+    siteUrl: "https://deviary.vercel.app/",
   },
   {
     name: "Threads Clone",
@@ -112,19 +118,19 @@ export const projects = [
       "TailwindCSS",
       "JWT",
       "Redux Toolkit",
-      "Cloudinary"
+      "Cloudinary",
     ],
+    repoUrl: "https://github.com/isipisii/deviary",
+    siteUrl: "https://deviary.vercel.app/",
   },
   {
     name: "DHB Porfolio",
     src: dhb,
     description: "A graphic designer's portfolio.",
     repoName: "DHB-portfolio",
-    technologies: [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ],
+    technologies: ["HTML", "CSS", "JavaScript"],
+    repoUrl: "https://github.com/isipisii/DHB-portfolio",
+    siteUrl: "https://danhenlybenig.vercel.app/",
   },
   {
     name: "Spotifile",
@@ -138,8 +144,10 @@ export const projects = [
       "TailwindCSS",
       "Redux Toolkit",
       "JavaScript",
-      "Spotify API"
+      "Spotify API",
     ],
+    repoUrl: "https://github.com/isipisii/spotifile",
+    siteUrl: "https://spotifile.vercel.app/",
   },
   {
     name: "Ask Bot",
@@ -147,11 +155,7 @@ export const projects = [
     description:
       "A GPT model-powered application. This was created to explore GPT's API.",
     repoName: "ask-bott",
-    technologies: [
-      "ReactJS",
-      "JavaScript",
-      "TailwindCSS",
-      "GPT API",
-    ],
+    technologies: ["ReactJS", "JavaScript", "TailwindCSS", "GPT API"],
+    repoUrl: "https://github.com/isipisii/ask-bott",
   },
 ];
