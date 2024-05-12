@@ -50,8 +50,8 @@ export default function ContactSection() {
           className="gap-4 flex items-center flex-col"
         >
           <h4 className="text-white/70 font-medium md:text-lg text-center">
-            Does scrolling make you exhausted?
-            <br className="md:hidden block" /> Jam with me then.
+            Did scrolling make you exhausted?
+            <br className="md:hidden block" /> Jam with me instead.
           </h4>
           <NowPlayingWidget />
         </motion.div>
