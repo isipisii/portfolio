@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import Image from "next/image";
 import { useGetNowPlaying } from "../services/use-get-now-playing";
 import SoundWave from "./sound-wave";
 import { GoCloudOffline } from "react-icons/go";
@@ -12,29 +13,44 @@ export default function NowPlayingWidget() {
     <>
       {!isLoading ? (
         error === "not-playing" || nowPlaying ? (
-          <div className="flex flex-col gap-2 max-w-[400px] w-full">
-               {nowPlaying && <p className="text-textMuted text-center">I&apos;m currently listening to.</p>}
-            <div className="p-3 flex justify-between gap-12 rounded-lg border border-[#484848]/40 bg-cardBg/80 ">
-              <div className="flex gap-4">
-                {error === "not-playing" ? (
+          <div className="flex flex-col gap-2 w-full max-w-[400px]">
+            {nowPlaying && (
+              <p className="text-textMuted text-center">
+                I&apos;m currently listening to.
+              </p>
+            )}
+            {/* widget card */}
+            <a
+              href={nowPlaying?.songUrl}
+              target="_blank"
+              className="p-3 flex justify-between gap-12 rounded-lg border border-[#484848]/40 bg-cardBg/80 "
+            >
+              <div className="flex gap-3 items-start">
+                {error === "not-playing" || !nowPlaying?.albumImageUrl ? (
                   <div className="border-[#484848]/40 border grid place-content-center size-[45px] rounded-md">
                     <IoIosMusicalNote className=" size-7 text-white/60" />
                   </div>
                 ) : (
-                  <img
+                  <Image
                     src={nowPlaying?.albumImageUrl}
+                    width={40}
+                    height={40}
                     alt="album-url"
-                    className="size-[45px] rounded-md border-[#484848]/40"
+                    className="size-[40px] rounded-md border-[#484848]/40"
                   />
                 )}
 
                 <div>
                   {/* <p className="text-sm text-primary tex">I&apos;m currently listening to</p> */}
-                  <p className="text-white text-sm md:text-base font-medium">
-                    {error === "not-playing"
-                      ? "Alessandro is"
-                      : nowPlaying?.title}
-                  </p>
+                  {nowPlaying?.title && nowPlaying?.title.length > 15 ? (
+                    <SongTitleMarquee songTitle={nowPlaying?.title} />
+                  ) : (
+                    <p className="text-white text-sm md:text-base font-medium">
+                      {error === "not-playing"
+                        ? "Alessandro is"
+                        : nowPlaying?.title}
+                    </p>
+                  )}
                   <p className="text-textMuted text-xs md:text-sm">
                     {error === "not-playing"
                       ? "currently offline"
@@ -48,7 +64,7 @@ export default function NowPlayingWidget() {
               ) : (
                 <SoundWave />
               )}
-            </div>
+            </a>
           </div>
         ) : (
           <Spinner />
@@ -57,7 +73,6 @@ export default function NowPlayingWidget() {
         <Spinner />
       )}
     </>
-    // {isLoading ? :}
   );
 }
 
@@ -81,5 +96,34 @@ function Spinner() {
         />
       </svg>
     </div>
+  );
+}
+
+function SongTitleMarquee({ songTitle }: { songTitle: string }) {
+  return (
+    <article className="overflow-hidden w-[200px] md:w-[250px] whitespace-nowrap flex">
+      <div className="wrapper">
+        <ul className="marquee">
+          {[...Array(5)].map((_, index) => (
+            <li
+              className="text-white text-sm md:text-base font-medium whitespace-nowrap"
+              key={index}
+            >
+              {songTitle}
+            </li>
+          ))}
+        </ul>
+        <ul className="marquee2">
+          {[...Array(5)].map((_, index) => (
+            <li
+              className="text-white text-sm md:text-base font-medium whitespace-nowrap"
+              key={index}
+            >
+              {songTitle}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </article>
   );
 }
