@@ -71,8 +71,6 @@ export function useGetNowPlaying() {
         //Extracting the required data from the response into seperate variables
         const song = await response.json();
 
-        console.log(song);
-
         const albumImageUrl: string = song.item.album.images[0].url;
         const artist: string = song.item.artists
           .map((artist: any) => artist.name)
@@ -84,7 +82,6 @@ export function useGetNowPlaying() {
         const timeTotal: number = song.item.duration_ms;
         const artistUrl: string =
           song.item.album.artists[0].external_urls.spotify;
-
         setNowPlaying({
           albumImageUrl,
           artist,
@@ -95,9 +92,10 @@ export function useGetNowPlaying() {
           timeTotal,
           artistUrl,
         });
-        setIsLoading(false);
       } catch (error: any) {
         console.error("Error fetching currently playing song: ", error);
+      } finally {
+        setIsLoading(false);
       }
     };
     getNowPlaying();
