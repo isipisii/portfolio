@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+::-moz-selection {
+  color: white;
+  background: #67dc0e88;
+}
+
+::selection {
+  color: white;
+  background: #67dc0e88;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -13,7 +23,7 @@ html {
 }
 
 .bar {
-  background: #1FE064;
+  background: #1fe064;
   bottom: 1px;
   height: 3px;
   position: absolute;

@@ -12,9 +12,9 @@ export default function Navbar() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.2, delay: 0.2 }}
         >
-          <Image src={NavLogo} width={50} height={50} alt="ale-logo" />
+          <Image src={NavLogo} width={60} height={60} alt="ale-logo" />
         </motion.div>
 
         <div className="flex gap-12">
