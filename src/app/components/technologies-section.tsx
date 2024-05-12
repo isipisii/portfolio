@@ -4,6 +4,8 @@ import { useState } from "react";
 import { technologies } from "../constants";
 import { Glow, GlowCapture } from "@codaworks/react-glow";
 import { IconType } from "react-icons";
+import { motion } from "framer-motion";
+import SectionTitleMotion from "./motions/section-title-motion";
 
 export default function TechnologiesSection() {
   const [isContainerHovered, setIsContainerHovered] = useState(false);
@@ -15,12 +17,12 @@ export default function TechnologiesSection() {
   return (
     <section className="w-full flex justify-center py-[4rem]">
       <div className=" w-full max-w-[1200px] grid gap-8 relative">
-        <h2 className="text-headerText leading-8 font-bold text-[32px] md:text-5xl">
+        <SectionTitleMotion>
           Technologies <br />{" "}
           <span className="font-normal text-textMuted text-[25px]">
             I&apos;ve worked with
           </span>
-        </h2>
+        </SectionTitleMotion>
         <GlowCapture>
           <Glow>
             <div
@@ -32,7 +34,11 @@ export default function TechnologiesSection() {
               }}
             >
               {technologies.map((technology, index) => (
-                <div
+                <motion.div
+                  initial={{ y: 50, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.1, delay: 0.2 + index * 0.04 }}
                   key={index}
                   className="bg-cardBg/80 hover:border-white rounded-xl glow:bg-primary/20  p-4 flex flex-col justify-center items-center gap-2 border border-[#484848]/40"
                   onMouseEnter={() => {
@@ -42,7 +48,7 @@ export default function TechnologiesSection() {
                   }}
                 >
                   <technology.icon className="text-white/80 size-[35px]" />
-                </div>
+                </motion.div>
               ))}
             </div>
           </Glow>
