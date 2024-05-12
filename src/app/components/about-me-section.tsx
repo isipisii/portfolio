@@ -1,7 +1,6 @@
 "use client";
 
 import { Glow, GlowCapture } from "@codaworks/react-glow";
-import NowPlayingWidget from "./now-playing-widget";
 import { motion } from "framer-motion";
 import SectionTitleMotion from "./motions/section-title-motion";
 
@@ -20,7 +19,7 @@ export default function AboutMeSection() {
             transition={{ duration: 0.2, delay: 0.2 }}
             className="bg-cardBg/80 w-full max-w-[1200px] relative rounded-2xl overflow-hidden border border-[#484848]/40  glow:bg-white/10"
           >
-            <div className="p-8 grid gap-6 md:max-w-[70%]">
+            <div className="p-8 grid gap-4 md:max-w-[70%]">
               <SectionTitleMotion>About Me</SectionTitleMotion>
               <motion.div
                 initial={{ y: 50, opacity: 0 }}
@@ -29,7 +28,7 @@ export default function AboutMeSection() {
                 transition={{ duration: 0.2, delay: 0.6 }}
                 className="grid gap-4 z-10"
               >
-                <p className="text-textMuted text-lg leading-relaxed">
+                <p className="text-textMuted text-base md:text-lg leading-relaxed">
                   Hello, again. I am Alessandro Benig, 21 years old. Currently,
                   I&apos;m in my third year of taking a Bachelor of Science in
                   Information Technology. I started creating things on the web
