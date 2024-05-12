@@ -5,7 +5,6 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function Navbar() {
-
   return (
     <header className="fixed w-full backdrop-blur bg-[#151418]/20 z-20 flex justify-center">
       <nav className="px-8 flex justify-between items-center py-4 max-w-[1400px] w-full">
@@ -15,7 +14,7 @@ export default function Navbar() {
           viewport={{ once: true }}
           transition={{ duration: 0.2 }}
         >
-          <Image src={NavLogo} width={40} height={40} alt="logo" />
+          <Image src={NavLogo} width={50} height={50} alt="ale-logo" />
         </motion.div>
 
         <div className="flex gap-12">
