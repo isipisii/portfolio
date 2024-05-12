@@ -36,7 +36,7 @@ export default function NowPlayingWidget() {
                     width={40}
                     height={40}
                     alt="album-url"
-                    className="size-[40px] rounded-md border-[#484848]/40"
+                    className="size-[45px] rounded-md border border-[#484848]/40"
                   />
                 )}
 
