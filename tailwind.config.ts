@@ -18,7 +18,7 @@ const config: Config = {
         primary: "#68DC0E",
         headerText: "#DBEBD1",
         textMuted: "#9E9F9D",
-        cardBg: "#1C1B1B"
+        cardBg: "#1C1B1B",
       },
     },
   },
