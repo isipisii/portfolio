@@ -37,7 +37,7 @@ export default function AboutMeSection() {
                   with that, it became my passion, which fuels my desire to
                   pursue more.
                 </p>
-                <p className="text-textMuted text-lg leading-relaxed">
+                <p className="text-textMuted text-base md:text-lg leading-relaxed">
                   Up to this day, I&apos;ve been constantly learning
                   technologies and creating projects to enhance my skills and
                   stay relevant in the industry.
