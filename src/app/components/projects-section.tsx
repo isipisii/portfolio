@@ -10,7 +10,7 @@ export default function ProjectsSection() {
         <SectionTitleMotion>
           Projects <br />{" "}
           <span className="font-normal text-textMuted text-[25px]">
-            These are the projects I&apos;ve built
+            These are the projects I built
           </span>
         </SectionTitleMotion>
         <div
