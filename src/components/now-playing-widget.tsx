@@ -6,73 +6,67 @@ import SoundWave from "./sound-wave";
 import { GoCloudOffline } from "react-icons/go";
 import { IoIosMusicalNote } from "react-icons/io";
 
-export default function NowPlayingWidget() {
-  const { nowPlaying, error, isLoading } = useGetNowPlaying();
+export default function NowPlayingWidget({ accessToken }: { accessToken: string }) {
+  const { nowPlaying, error, isLoading } = useGetNowPlaying(accessToken);
 
-  return (
-    <>
-      {!isLoading ? (
-        error === "not-playing" || nowPlaying ? (
-          <div className="flex flex-col gap-2 w-full max-w-[400px]">
-            {nowPlaying && (
-              <p className="text-textMuted text-center">
-                I&apos;m currently listening to.
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  return error === "not-playing" || nowPlaying ? (
+    <div className="flex flex-col gap-2 w-full max-w-[400px]">
+      {nowPlaying && (
+        <p className="text-textMuted text-center">
+          I&apos;m currently listening to.
+        </p>
+      )}
+      {/* widget card */}
+      <a
+        href={nowPlaying?.songUrl}
+        target="_blank"
+        className="p-3 flex justify-between gap-12 rounded-lg border border-[#484848]/40 bg-cardBg/80 "
+      >
+        <div className="flex gap-3 items-start">
+          {error === "not-playing" || !nowPlaying?.albumImageUrl ? (
+            <div className="border-[#484848]/40 border grid place-content-center size-[45px] rounded-md">
+              <IoIosMusicalNote className=" size-7 text-white/60" />
+            </div>
+          ) : (
+            <Image
+              src={nowPlaying?.albumImageUrl}
+              width={40}
+              height={40}
+              alt="album-url"
+              className="size-[45px] rounded-md border border-[#484848]/40"
+            />
+          )}
+
+          <div>
+            {/* <p className="text-sm text-primary tex">I&apos;m currently listening to</p> */}
+            {nowPlaying?.title && nowPlaying?.title.length > 15 ? (
+              <SongTitleMarquee songTitle={nowPlaying?.title} />
+            ) : (
+              <p className="text-white text-sm md:text-base font-medium">
+                {error === "not-playing" ? "Alessandro is" : nowPlaying?.title}
               </p>
             )}
-            {/* widget card */}
-            <a
-              href={nowPlaying?.songUrl}
-              target="_blank"
-              className="p-3 flex justify-between gap-12 rounded-lg border border-[#484848]/40 bg-cardBg/80 "
-            >
-              <div className="flex gap-3 items-start">
-                {error === "not-playing" || !nowPlaying?.albumImageUrl ? (
-                  <div className="border-[#484848]/40 border grid place-content-center size-[45px] rounded-md">
-                    <IoIosMusicalNote className=" size-7 text-white/60" />
-                  </div>
-                ) : (
-                  <Image
-                    src={nowPlaying?.albumImageUrl}
-                    width={40}
-                    height={40}
-                    alt="album-url"
-                    className="size-[45px] rounded-md border border-[#484848]/40"
-                  />
-                )}
-
-                <div>
-                  {/* <p className="text-sm text-primary tex">I&apos;m currently listening to</p> */}
-                  {nowPlaying?.title && nowPlaying?.title.length > 15 ? (
-                    <SongTitleMarquee songTitle={nowPlaying?.title} />
-                  ) : (
-                    <p className="text-white text-sm md:text-base font-medium">
-                      {error === "not-playing"
-                        ? "Alessandro is"
-                        : nowPlaying?.title}
-                    </p>
-                  )}
-                  <p className="text-textMuted text-xs md:text-sm">
-                    {error === "not-playing"
-                      ? "currently offline"
-                      : nowPlaying?.artist}
-                  </p>
-                </div>
-              </div>
-
-              {error === "not-playing" ? (
-                <GoCloudOffline className=" size-5 text-white/60" />
-              ) : (
-                <SoundWave />
-              )}
-            </a>
+            <p className="text-textMuted text-xs md:text-sm">
+              {error === "not-playing"
+                ? "currently offline"
+                : nowPlaying?.artist}
+            </p>
           </div>
+        </div>
+
+        {error === "not-playing" ? (
+          <GoCloudOffline className=" size-5 text-white/60" />
         ) : (
-          <Spinner />
-        )
-      ) : (
-        <Spinner />
-      )}
-    </>
+          <SoundWave />
+        )}
+      </a>
+    </div>
+  ) : (
+    <Spinner />
   );
 }
 
