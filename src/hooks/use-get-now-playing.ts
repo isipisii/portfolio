@@ -85,7 +85,7 @@ const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
 export const getAccessToken = async () => {
   //generated a base64 code of client_id:client_secret as required by the spotify API
   const basic = Buffer.from(
-    `${process.env.NEXT_PUBLIC_CLIENT_ID}:${process.env.NEXT_PUBLIC_CLIENT_SECRET}`
+    `${"2895ead45ceb4370bb19a0bb2b36210a"}:${"c8478690a7f147d59e3ec30ddd923f4f"}`
   ).toString("base64");
 
   //request access token along with the refresh token
@@ -97,7 +97,7 @@ export const getAccessToken = async () => {
     },
     body: queryString.stringify({
       grant_type: "refresh_token",
-      refresh_token: process.env.NEXT_PUBLIC_REFRESH_TOKEN,
+      refresh_token: "AQCnQ_t0OJPOzFhjxcZHqOug4YvdK1h1IuyZs_mbZYByaJ0e1LMiPqbTLKzfNm3vd3h6nD08WiHy782J6KcLYpToP9u3FYzgR87povMLJUl1OHiFvIY-AawvxPry3l72Kj0",
     }),
   });
 
