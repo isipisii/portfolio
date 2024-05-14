@@ -1,4 +1,3 @@
-import queryString from "query-string";
 import { useEffect, useState } from "react";
 
 type TNowPlaying = {
@@ -16,7 +15,7 @@ type TError = "not-playing" | "fetch-error" | null;
 const NOW_PLAYING_ENDPOINT =
   "https://api.spotify.com/v1/me/player/currently-playing";
 
-export function useGetNowPlaying() {
+export function useGetNowPlaying(accessToken: string) {
   const [nowPlaying, setNowPlaying] = useState<TNowPlaying | null>(null);
   const [error, setError] = useState<TError>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,11 +24,9 @@ export function useGetNowPlaying() {
     const getNowPlaying = async () => {
       setIsLoading(true);
       try {
-        const { access_token } = await getAccessToken();
-
         const response = await fetch(NOW_PLAYING_ENDPOINT, {
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         });
         //if response status > 400 means there was some error while fetching the required information
@@ -70,7 +67,7 @@ export function useGetNowPlaying() {
       }
     };
     getNowPlaying();
-  }, []);
+  }, [accessToken]);
 
   return {
     nowPlaying,
@@ -78,28 +75,3 @@ export function useGetNowPlaying() {
     isLoading,
   };
 }
-
-
-const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
-
-export const getAccessToken = async () => {
-  //generated a base64 code of client_id:client_secret as required by the spotify API
-  const basic = Buffer.from(
-    `${"2895ead45ceb4370bb19a0bb2b36210a"}:${"c8478690a7f147d59e3ec30ddd923f4f"}`
-  ).toString("base64");
-
-  //request access token along with the refresh token
-  const response = await fetch(TOKEN_ENDPOINT, {
-    method: "POST",
-    headers: {
-      Authorization: `Basic ${basic}`,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: queryString.stringify({
-      grant_type: "refresh_token",
-      refresh_token: "AQCnQ_t0OJPOzFhjxcZHqOug4YvdK1h1IuyZs_mbZYByaJ0e1LMiPqbTLKzfNm3vd3h6nD08WiHy782J6KcLYpToP9u3FYzgR87povMLJUl1OHiFvIY-AawvxPry3l72Kj0",
-    }),
-  });
-
-  return await response.json();
-};
