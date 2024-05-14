@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { technologies } from "../constants";
+import { technologies } from "../../constants";
 import { Glow, GlowCapture } from "@codaworks/react-glow";
 import { IconType } from "react-icons";
 import { motion } from "framer-motion";
-import SectionTitleMotion from "./motions/section-title-motion";
+import SectionTitleMotion from "../motions/section-title-motion";
 
 export default function TechnologiesSection() {
   const [isContainerHovered, setIsContainerHovered] = useState(false);

@@ -1,7 +1,7 @@
-import { projects } from "../constants";
-import SectionTitleMotion from "./motions/section-title-motion";
-import ProjectCard from "./project-card";
-import ProjectContainerMotion from "./motions/project-container-motion";
+import { projects } from "../../constants";
+import SectionTitleMotion from "../motions/section-title-motion";
+import ProjectCard from "../project-card";
+import ProjectContainerMotion from "../motions/project-container-motion";
 
 export default function ProjectsSection() {
   return (

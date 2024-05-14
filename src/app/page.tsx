@@ -1,8 +1,8 @@
-import HeroSection from "../components/hero-section";
-import AboutMeSection from "../components/about-me-section";
-import TechnologiesSection from "../components/technologies-section";
-import ProjectsSection from "../components/projects-section";
-import ContactSection from "../components/contact-section";
+import HeroSection from "../components/sections/hero-section";
+import AboutMeSection from "../components/sections/about-me-section";
+import TechnologiesSection from "../components/sections/technologies-section";
+import ProjectsSection from "../components/sections/projects-section";
+import ContactSection from "../components/sections/contact-section";
 import { SiNextdotjs } from "react-icons/si";
 
 export default async function Home() {

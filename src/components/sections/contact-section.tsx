@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import NowPlayingWidget from "./now-playing-widget";
+import NowPlayingWidget from "../now-playing-widget";
 import { motion } from "framer-motion";
 
 export default function ContactSection() {

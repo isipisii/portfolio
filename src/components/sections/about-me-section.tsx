@@ -2,7 +2,7 @@
 
 import { Glow, GlowCapture } from "@codaworks/react-glow";
 import { motion } from "framer-motion";
-import SectionTitleMotion from "./motions/section-title-motion";
+import SectionTitleMotion from "../motions/section-title-motion";
 
 export default function AboutMeSection() {
   return (

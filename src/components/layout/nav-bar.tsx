@@ -1,6 +1,6 @@
 "use client";
 
-import NavLogo from "../assets/nav-logo.svg";
+import NavLogo from "@/assets/nav-logo.svg";
 import Image from "next/image";
 import { motion } from "framer-motion";
 

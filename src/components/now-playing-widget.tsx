@@ -1,14 +1,14 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import Image from "next/image";
-import { useGetNowPlaying } from "../services/use-get-now-playing";
+import { useGetNowPlaying } from "@/hooks/use-get-now-playing";
 import SoundWave from "./sound-wave";
 import { GoCloudOffline } from "react-icons/go";
 import { IoIosMusicalNote } from "react-icons/io";
 
 export default function NowPlayingWidget() {
   const { nowPlaying, error, isLoading } = useGetNowPlaying();
+
   return (
     <>
       {!isLoading ? (

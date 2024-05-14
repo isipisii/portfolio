@@ -1,33 +1,6 @@
 import queryString from "query-string";
 import { useEffect, useState } from "react";
 
-const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
-
-export const getAccessToken = async () => {
-  //generated a base64 code of client_id:client_secret as required by the API
-  const basic = Buffer.from(
-    `2895ead45ceb4370bb19a0bb2b36210a:c8478690a7f147d59e3ec30ddd923f4f`
-  ).toString("base64");
-
-  //request for creating an access token
-  const response = await fetch(TOKEN_ENDPOINT, {
-    method: "POST",
-    headers: {
-      Authorization: `Basic ${basic}`,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: queryString.stringify({
-      grant_type: "refresh_token",
-      refresh_token:
-        "AQCnQ_t0OJPOzFhjxcZHqOug4YvdK1h1IuyZs_mbZYByaJ0e1LMiPqbTLKzfNm3vd3h6nD08WiHy782J6KcLYpToP9u3FYzgR87povMLJUl1OHiFvIY-AawvxPry3l72Kj0",
-    }),
-  });
-
-  const data = await response.json();
-
-  return data;
-};
-
 type TNowPlaying = {
   songUrl: string;
   albumImageUrl: string;
@@ -38,7 +11,6 @@ type TNowPlaying = {
   timeTotal: number;
   artistUrl: string;
 };
-
 type TError = "not-playing" | "fetch-error" | null;
 
 const NOW_PLAYING_ENDPOINT =
@@ -60,15 +32,14 @@ export function useGetNowPlaying() {
             Authorization: `Bearer ${access_token}`,
           },
         });
-        //If response status > 400 means there was some error while fetching the required information
+        //if response status > 400 means there was some error while fetching the required information
         if (response.status > 400) {
           setError("fetch-error");
+          //this returns no content and that means the user is either offline/not playing
         } else if (response.status === 204) {
-          //The response was fetched but there was no content
           setError("not-playing");
         }
 
-        //Extracting the required data from the response into seperate variables
         const song = await response.json();
 
         const albumImageUrl: string = song.item.album.images[0].url;
@@ -93,7 +64,7 @@ export function useGetNowPlaying() {
           artistUrl,
         });
       } catch (error: any) {
-        console.error("Error fetching currently playing song: ", error);
+        console.error("Error fetching playing song: ", error);
       } finally {
         setIsLoading(false);
       }
@@ -107,3 +78,28 @@ export function useGetNowPlaying() {
     isLoading,
   };
 }
+
+
+const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
+
+export const getAccessToken = async () => {
+  //generated a base64 code of client_id:client_secret as required by the spotify API
+  const basic = Buffer.from(
+    `${process.env.NEXT_PUBLIC_CLIENT_ID}:${process.env.NEXT_PUBLIC_CLIENT_SECRET}`
+  ).toString("base64");
+
+  //request access token along with the refresh token
+  const response = await fetch(TOKEN_ENDPOINT, {
+    method: "POST",
+    headers: {
+      Authorization: `Basic ${basic}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: queryString.stringify({
+      grant_type: "refresh_token",
+      refresh_token: process.env.NEXT_PUBLIC_REFRESH_TOKEN,
+    }),
+  });
+
+  return await response.json();
+};
