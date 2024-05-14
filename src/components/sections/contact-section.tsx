@@ -4,7 +4,11 @@ import React from "react";
 import NowPlayingWidget from "../now-playing-widget";
 import { motion } from "framer-motion";
 
-export default function ContactSection() {
+export default function ContactSection({
+  accessToken,
+}: {
+  accessToken: string;
+}) {
   return (
     <section id="contact" className="flex justify-center w-full py-[7rem]">
       <div className="grid gap-[10rem] place-items-center relative w-full max-w-[1200px]">
@@ -53,7 +57,7 @@ export default function ContactSection() {
             Did scrolling make you exhausted?
             <br className="md:hidden block" /> Jam with me instead.
           </h4>
-          <NowPlayingWidget />
+          <NowPlayingWidget accessToken={accessToken} />
         </motion.div>
       </div>
     </section>
