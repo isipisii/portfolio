@@ -6,7 +6,11 @@ import SoundWave from "./sound-wave";
 import { GoCloudOffline } from "react-icons/go";
 import { IoIosMusicalNote } from "react-icons/io";
 
-export default function NowPlayingWidget({ accessToken }: { accessToken: string }) {
+export default function NowPlayingWidget({
+  accessToken,
+}: {
+  accessToken: string;
+}) {
   const { nowPlaying, error, isLoading } = useGetNowPlaying(accessToken);
 
   if (isLoading) {
@@ -22,7 +26,11 @@ export default function NowPlayingWidget({ accessToken }: { accessToken: string 
       )}
       {/* widget card */}
       <a
-        href={nowPlaying?.songUrl}
+        href={
+          error === "not-playing"
+            ? "https://open.spotify.com/user/22wcdi46uy5zxbmv5joaaumaa"
+            : nowPlaying?.songUrl
+        }
         target="_blank"
         className="p-3 flex justify-between gap-12 rounded-lg border border-[#484848]/40 bg-cardBg/80 "
       >
@@ -52,7 +60,7 @@ export default function NowPlayingWidget({ accessToken }: { accessToken: string 
             )}
             <p className="text-textMuted text-xs md:text-sm">
               {error === "not-playing"
-                ? "currently offline"
+                ? "currently not playing on spotify"
                 : nowPlaying?.artist}
             </p>
           </div>
