@@ -18,6 +18,7 @@ export default function MobileMenu() {
           !divRef.current.contains(e.target as Node)
         ) {
           handleToggleMenu();
+          enableScroll();
         }
       }
     }
@@ -28,6 +29,14 @@ export default function MobileMenu() {
     };
   }, [isOpen]);
 
+  function disableScroll() {
+    document.body.style.overflow = "hidden";
+  }
+
+  function enableScroll() {
+    document.body.style.overflow = "auto";
+  }
+
   function handleToggleMenu() {
     setIsOpen((prevState) => !prevState);
   }
@@ -35,7 +44,10 @@ export default function MobileMenu() {
   return (
     <>
       <motion.button
-        onClick={handleToggleMenu}
+        onClick={() => {
+          handleToggleMenu();
+          disableScroll();
+        }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -54,7 +66,7 @@ export default function MobileMenu() {
             transition={{ duration: 0.1 }}
             exit={{ x: 100, opacity: 0 }}
             className="h-screen w-screen bg-[#42414129]/10 fixed md:hidden 
-            backdrop-blur-sm right-0 top-0 flex justify-end"
+            backdrop-blur-sm right-0 top-0 flex justify-end z-30"
           >
             <motion.aside
               ref={divRef}
@@ -64,7 +76,13 @@ export default function MobileMenu() {
               transition={{ duration: 0.2 }}
               className="w-[70%] bg-background h-full p-8 flex flex-col gap-[7rem]"
             >
-              <button onClick={handleToggleMenu} className="self-end">
+              <button
+                onClick={() => {
+                  handleToggleMenu();
+                  enableScroll();
+                }}
+                className="self-end"
+              >
                 <IoClose className="text-white/60 hover:text-white size-8 transition ease-in-out duration-100" />
               </button>
               <div className="gap-8 flex flex-col items-center w-full ">
@@ -74,10 +92,13 @@ export default function MobileMenu() {
                     initial={{ x: 20, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.2, delay: 0.4 + idx * 0.2 }}
+                    transition={{ duration: 0.2, delay: 0.2 + idx * 0.08 }}
                     href={"#" + item.toLowerCase()}
                     className="text-textMuted hover:text-primary/80 text-xl w-full p-4"
-                    onClick={handleToggleMenu}
+                    onClick={() => {
+                      handleToggleMenu();
+                      enableScroll();
+                    }}
                   >
                     {item}
                   </motion.a>
