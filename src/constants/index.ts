@@ -34,6 +34,8 @@ import ab from "../assets/projects/askvot.jpg";
 import deviary from "../assets/projects/deviary.png";
 import { StaticImageData } from "next/image";
 
+export const navItems = ["About", "Projects", "Contact"];
+
 export const technologies = [
   { name: "TypeScript", icon: SiTypescript },
   { name: "JavaScript", icon: SiJavascript },
