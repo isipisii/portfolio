@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import queryString from "query-string";
 
 type TNowPlaying = {
   songUrl: string;
@@ -14,19 +15,20 @@ type TError = "not-playing" | "fetch-error" | null;
 
 const NOW_PLAYING_ENDPOINT =
   "https://api.spotify.com/v1/me/player/currently-playing";
+const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
 
-export function useGetNowPlaying(accessToken: string) {
+export function useGetNowPlaying() {
   const [nowPlaying, setNowPlaying] = useState<TNowPlaying | null>(null);
   const [error, setError] = useState<TError>(null);
-  const [isLoading, setIsLoading] = useState(false);
 
+  //i used polling to keep track the current time of the currently playing track
   useEffect(() => {
     const getNowPlaying = async () => {
-      setIsLoading(true);
       try {
+        const { access_token } = await getAccessToken();
         const response = await fetch(NOW_PLAYING_ENDPOINT, {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `Bearer ${access_token}`,
           },
         });
         //if response status > 400 means there was some error while fetching the required information
@@ -62,16 +64,43 @@ export function useGetNowPlaying(accessToken: string) {
         });
       } catch (error: any) {
         console.error("Error fetching playing song: ", error);
-      } finally {
-        setIsLoading(false);
       }
     };
-    getNowPlaying();
-  }, [accessToken]);
+
+    const intervalId = setInterval(() => {
+      getNowPlaying();
+    }, 1000);
+
+    // cleanup function to avoid memory leak
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
   return {
     nowPlaying,
     error,
-    isLoading,
   };
 }
+
+export const getAccessToken = async () => {
+  //generated a base64 code of client_id:client_secret as required by the spotify API
+  const basic = Buffer.from(
+    `${process.env.NEXT_PUBLIC_CLIENT_ID}:${process.env.NEXT_PUBLIC_CLIENT_SECRET}`
+  ).toString("base64");
+
+  //request access token using the refresh token
+  const response = await fetch(TOKEN_ENDPOINT, {
+    method: "POST",
+    headers: {
+      Authorization: `Basic ${basic}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: queryString.stringify({
+      grant_type: "refresh_token",
+      refresh_token: process.env.NEXT_PUBLIC_REFRESH_TOKEN,
+    }),
+  });
+
+  return await response.json();
+};
