@@ -4,10 +4,8 @@ import TechnologiesSection from "../components/sections/technologies-section";
 import ProjectsSection from "../components/sections/projects-section";
 import ContactSection from "../components/sections/contact-section";
 import { SiNextdotjs } from "react-icons/si";
-import { getAccessToken } from "@/services/get-access-token";
 
 export default async function Home() {
-  const  { access_token } = await getAccessToken();
 
   return (
     <main className="w-full px-8 justify-center flex flex-col gap-12 items-center overflow-hidden">
@@ -15,7 +13,7 @@ export default async function Home() {
       <AboutMeSection />
       <TechnologiesSection />
       <ProjectsSection />
-      <ContactSection accessToken={access_token} />
+      <ContactSection />
       <footer className="w-full">
         <div className="pt-12 pb-4 flex flex-col gap-8">
           <div className="text-textMuted/70 text-sm md:text-base grid gap-2 place-items-center">
