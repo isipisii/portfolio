@@ -18,7 +18,7 @@ html {
 
 #bars {
   height: 20px;
-  width: 30px;
+  width: 20px;
   position: relative;
 }
 
@@ -65,10 +65,6 @@ html {
 .bar:nth-child(6) {
   left: 18px;
   animation-duration: 427ms;
-}
-.bar:nth-child(7) {
-  left: 22px;
-  animation-duration: 441ms;
 }
 
 .wrapper {
