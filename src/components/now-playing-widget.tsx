@@ -6,76 +6,107 @@ import SoundWave from "./sound-wave";
 import { GoCloudOffline } from "react-icons/go";
 import { IoIosMusicalNote } from "react-icons/io";
 
-export default function NowPlayingWidget({
-  accessToken,
-}: {
-  accessToken: string;
-}) {
-  const { nowPlaying, error, isLoading } = useGetNowPlaying(accessToken);
-
-  if (isLoading) {
-    return <Spinner />;
-  }
-
-  return error === "not-playing" || nowPlaying ? (
-    <div className="flex flex-col gap-2 w-full max-w-[400px]">
-      {nowPlaying && (
-        <p className="text-textMuted text-center">
-          I&apos;m currently listening to.
-        </p>
-      )}
-      {/* widget card */}
-      <a
-        href={
-          error === "not-playing"
-            ? "https://open.spotify.com/user/22wcdi46uy5zxbmv5joaaumaa"
-            : nowPlaying?.songUrl
-        }
-        target="_blank"
-        className="p-3 flex justify-between gap-12 rounded-lg border border-[#484848]/40 bg-cardBg/80 "
-      >
-        <div className="flex gap-3 items-start">
-          {error === "not-playing" || !nowPlaying?.albumImageUrl ? (
-            <div className="border-[#484848]/40 border grid place-content-center size-[45px] rounded-md">
-              <IoIosMusicalNote className=" size-7 text-white/60" />
-            </div>
-          ) : (
-            <Image
-              src={nowPlaying?.albumImageUrl}
-              width={40}
-              height={40}
-              alt="album-url"
-              className="size-[45px] rounded-md border border-[#484848]/40"
-            />
-          )}
-
-          <div>
-            {/* <p className="text-sm text-primary tex">I&apos;m currently listening to</p> */}
-            {nowPlaying?.title && nowPlaying?.title.length > 15 ? (
-              <SongTitleMarquee songTitle={nowPlaying?.title} />
-            ) : (
-              <p className="text-white text-sm md:text-base font-medium">
-                {error === "not-playing" ? "Alessandro is" : nowPlaying?.title}
-              </p>
-            )}
-            <p className="text-textMuted text-xs md:text-sm">
-              {error === "not-playing"
-                ? "currently not playing on spotify"
-                : nowPlaying?.artist}
-            </p>
-          </div>
-        </div>
-
-        {error === "not-playing" ? (
-          <GoCloudOffline className=" size-5 text-white/60" />
-        ) : (
-          <SoundWave />
-        )}
-      </a>
-    </div>
-  ) : (
-    <Spinner />
+export default function NowPlayingWidget() {
+  const { nowPlaying, error } = useGetNowPlaying();
+  const timePlayed = new Date(nowPlaying?.timePlayed as number);
+  const totalTime = new Date(nowPlaying?.timeTotal as number);
+  const timePercentage = Math.round(
+    (Number(nowPlaying?.timePlayed) / Number(nowPlaying?.timeTotal)) * 100
   );
+
+  const formattedTimePlayed = `${timePlayed
+    .getMinutes()
+    .toString()
+    .padStart(2, "0")}:${timePlayed.getSeconds().toString().padStart(2, "0")}`;
+
+  const formattedTotalTime = `${totalTime
+    .getMinutes()
+    .toString()
+    .padStart(2, "0")}:${totalTime.getSeconds().toString().padStart(2, "0")}`;
+
+  if (error === "not-playing" || nowPlaying) {
+    return (
+      <div className="flex flex-col gap-2 w-full max-w-[400px]">
+        {nowPlaying && (
+          <p className="text-textMuted text-center">
+            I&apos;m currently listening to.
+          </p>
+        )}
+        {/* widget card */}
+        <a
+          href={
+            error === "not-playing"
+              ? "https://open.spotify.com/user/22wcdi46uy5zxbmv5joaaumaa"
+              : nowPlaying?.songUrl
+          }
+          target="_blank"
+          className="p-3 grid gap-4 rounded-lg border border-[#484848]/40 bg-cardBg/80 "
+        >
+          <div className="flex gap-4 justify-between">
+            <div className="flex gap-3 items-start">
+              {error === "not-playing" || !nowPlaying?.albumImageUrl ? (
+                <div className="border-[#484848]/40 border grid place-content-center size-[45px] rounded-md">
+                  <IoIosMusicalNote className=" size-7 text-white/60" />
+                </div>
+              ) : (
+                <Image
+                  src={nowPlaying?.albumImageUrl}
+                  width={50}
+                  height={50}
+                  alt="album-url"
+                  className="rounded-md border border-[#484848]/40"
+                />
+              )}
+
+              {/* song details */}
+              <div>
+                <div>
+                  {nowPlaying?.title &&
+                  nowPlaying?.title.length > 15 &&
+                  error !== "not-playing" ? (
+                    <SongTitleMarquee songTitle={nowPlaying?.title} />
+                  ) : (
+                    <p className="text-white text-sm md:text-base font-medium">
+                      {error === "not-playing" || !nowPlaying
+                        ? "Alessandro is"
+                        : nowPlaying?.title}
+                    </p>
+                  )}
+                  <p className="text-textMuted text-xs md:text-sm leading-tight">
+                    {error === "not-playing" || !nowPlaying
+                      ? "currently not playing on spotify"
+                      : nowPlaying?.artist}
+                  </p>
+                </div>
+              </div>
+            </div>
+            {error === "not-playing" || !nowPlaying ? (
+              <GoCloudOffline className=" size-5 text-white/60" />
+            ) : (
+              <SoundWave />
+            )}
+          </div>
+
+          {/* song progress */}
+          {error !== "not-playing" && nowPlaying && (
+            <div className="w-full grid gap-2">
+              <div className="w-full bg-white/10 h-1 rounded-full">
+                <div
+                  style={{ width: `${timePercentage}%` }}
+                  className="h-1 bg-[#1FE064] rounded-full"
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <p className="text-textMuted text-xs">{formattedTimePlayed}</p>
+                <p className="text-textMuted text-xs">{formattedTotalTime}</p>
+              </div>
+            </div>
+          )}
+        </a>
+      </div>
+    );
+  }
+  return <Spinner />;
 }
 
 function Spinner() {
