@@ -8,8 +8,6 @@ export default function SoundWave() {
         <div className='bar' />
         <div className='bar' />
         <div className='bar' />
-        <div className='bar' />
-        <div className='bar' />
     </div>
   )
 }
