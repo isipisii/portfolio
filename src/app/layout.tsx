@@ -4,13 +4,24 @@ import "./globals.css";
 import Navbar from "@/components/layout/nav-bar";
 
 const jost = Jost({ subsets: ["latin"] });
+const TITLE = "Alessandro Benig"
+const DESCRIPTION = "A goal-driven and passionate student web developer based in the Philippines, solely focused on creating react applications."
 
 export const metadata: Metadata = {
-  title: "Alessandro Benig",
-  description: "Minimalist portfolio",
+  title: TITLE,
+  description: DESCRIPTION,
   icons: {
-    icon: "/logo.png"
-  }
+    icon: "/logo.png",
+  },
+  openGraph: {
+    type: "website",
+    siteName: TITLE,
+    title: {
+      default: TITLE,
+      template: "Alessandro Benig's portfolio",
+    },
+    description: DESCRIPTION,
+  },
 };
 
 export default function RootLayout({
