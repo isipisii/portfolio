@@ -64,9 +64,8 @@ export default function MobileMenu() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.1 }}
-            exit={{ x: 100, opacity: 0 }}
-            className="h-screen w-screen bg-[#42414129]/10 fixed md:hidden 
-            backdrop-blur-sm right-0 top-0 flex justify-end z-30"
+            exit={{  opacity: 0 }}
+            className="h-screen w-screen bg-[#8583831a] fixed md:hidden right-0 top-0 flex justify-end z-30"
           >
             <motion.aside
               ref={divRef}
@@ -74,6 +73,7 @@ export default function MobileMenu() {
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.2 }}
+              exit={{ x: 100,  opacity: 0 }}
               className="w-[70%] bg-background h-full p-8 flex flex-col gap-[7rem]"
             >
               <button
