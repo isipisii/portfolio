@@ -71,7 +71,7 @@ export default function HeroSection() {
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.2, delay: 1.4 }}
-          className="text-textMuted text-lg max-w-[500px]"
+          className="text-textMuted text-base md:text-lg max-w-[500px]"
         >
           A goal-driven and passionate student web developer based in the
           Philippines, solely focused on creating react applications.
