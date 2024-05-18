@@ -36,8 +36,7 @@ export default function AboutMeSection() {
                   enjoyed styling web pages, which led me to learn more, and
                   with that, it became my passion, which fuels my desire to
                   pursue more.
-                </p>
-                <p className="text-textMuted text-base md:text-lg leading-relaxed">
+                  <br /> <br />
                   Up to this day, I&apos;ve been constantly learning
                   technologies and creating projects to enhance my skills and
                   stay relevant in the industry.
