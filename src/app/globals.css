@@ -73,12 +73,18 @@ html {
 
 .marquee {
   animation: marquee 60s linear infinite;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
 }
 
 .marquee2 {
   animation: marquee2 60s linear infinite;
   position: absolute;
   top: 0;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
 }
 
 ul {
