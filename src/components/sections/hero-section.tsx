@@ -24,7 +24,7 @@ export default function HeroSection() {
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.2, delay: 1.2 }}
-          className="text-white text-5xl md:text-7xl font-bold"
+          className="text-white/90 text-5xl md:text-7xl font-bold"
         >
           Alessandro Benig.
         </motion.h1>
@@ -43,7 +43,7 @@ export default function HeroSection() {
               <div className={just_me_again_down_here.className}>
                 <p
                   className={
-                    "text-white text-base md:text-[1.6rem] stuck absolute -right-[4rem] -rotate-12 -top-1"
+                    "text-white/90 text-base md:text-[1.6rem] stuck absolute -right-[4rem] -rotate-12 -top-1"
                   }
                 >
                   but sometimes, <span className="text-primary">stuck.</span>
