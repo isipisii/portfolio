@@ -3,13 +3,14 @@
 import React from "react";
 import NowPlayingWidget from "../now-playing-widget";
 import { motion } from "framer-motion";
+import RoundedGradient from "../rounded-gradient";
 
 export default function ContactSection() {
   return (
     <section id="contact" className="flex justify-center w-full py-[7rem]">
       <div className="grid gap-[10rem] place-items-center relative w-full max-w-[1200px]">
-        <div className="absolute right-0 top-0 size-[200px] md:size-[300px] rounded-full bg-gradient-to-l -z-10 from-primary/20 to-primary/10 blur-[60px] filter" />
-        <div className="absolute left-0 bottom-0  size-[200px] md:size-[300px] rounded-full bg-gradient-to-l -z-10 from-primary/20 to-primary/10 blur-[60px] filter" />
+        <RoundedGradient className="absolute right-0 top-0" />
+        <RoundedGradient className="absolute left-0 bottom-0" />
         <div className="grid gap-8 place-items-center">
           <div className="grid gap-4">
             <motion.p
