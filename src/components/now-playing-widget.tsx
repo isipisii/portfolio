@@ -29,7 +29,7 @@ export default function NowPlayingWidget() {
       <div className="flex flex-col gap-2 w-full max-w-[400px]">
         {nowPlaying && (
           <p className="text-textMuted text-center">
-            I&apos;m currently listening to.
+            I&apos;m currently listening to:
           </p>
         )}
         {/* widget card */}
