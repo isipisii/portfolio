@@ -33,7 +33,7 @@ export default function Navbar() {
     <header
       className={twMerge(
         "fixed w-full  z-20 flex justify-center transition duration-100 ease-in-out",
-        showBg ? "bg-[#151418]/70 backdrop-blur" : null
+        showBg ? "bg-[#0F0F0F]/70 backdrop-blur" : null
       )}
     >
       <nav className="px-8 flex justify-between items-center py-4 max-w-[1400px] w-full">

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { SiFacebook, SiGithub } from "react-icons/si";
+import { SiFacebook, SiGithub, SiLinkedin } from "react-icons/si";
 
 export default function Socials() {
   return (
@@ -18,6 +18,9 @@ export default function Socials() {
         </a>
         <a href="https://web.facebook.com/alessandro.benig" target="_blank">
           <SiFacebook className="text-headerText size-6" />
+        </a>
+          <a href="https://www.linkedin.com/in/alessandro-benig-3b8b7a257/" target="_blank">
+          <SiLinkedin className="text-headerText size-6" />
         </a>
       </div>
       <span className="w-[1px] bg-headerText h-[100px]"></span>

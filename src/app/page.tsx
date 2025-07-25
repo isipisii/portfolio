@@ -17,13 +17,10 @@ export default async function Home() {
       <footer className="w-full">
         <div className="pt-12 pb-4 flex flex-col gap-8">
           <div className="text-textMuted/70 text-sm md:text-base grid gap-2 place-items-center">
-            <p> Design and Built by Alessandro Benig</p>
+            <p> Designed and Built by Alessandro Benig</p>
             <p>Powered by</p>
             <SiNextdotjs className="size-8 text-white/80" />
           </div>
-          <p className="text-sm text-textMuted/60 md:text-left text-center">
-            This site is still under development
-          </p>
         </div>
       </footer>
     </main>
