@@ -3,7 +3,6 @@
 import { just_me_again_down_here } from "@/app/fonts";
 import Image from "next/image";
 import HeroLogo from "@/assets/hero-logo.svg";
-import Underline from "@/assets/underline.svg";
 import { motion } from "framer-motion";
 
 export default function HeroSection() {
@@ -35,22 +34,21 @@ export default function HeroSection() {
 						className="text-3xl md:text-5xl font-bold bg-gradient-to-t  from-[#d1f7b5] to-[#02c39a] bg-clip-text text-transparent"
 					>
 						Full-stack{" "}
-						<span className="relative bg-gradient-to-t from-[#d1f7b5] to-[#02c39a] bg-clip-text text-transparent">
-							developer
-							<div className={just_me_again_down_here.className}>
-								<p className={"text-white/90 text-base md:text-[1.6rem] stuck absolute -right-[6rem] -rotate-12 -top-6"}>
-									but sometimes, <span className="text-primary">stuck.</span>
-								</p>
-							</div>
-						</span>
+						<span className="relative bg-gradient-to-t from-[#d1f7b5] to-[#02c39a] bg-clip-text text-transparent">developer</span>
+						<div className={just_me_again_down_here.className}>
+							<p className={"text-white/90 text-[1.3rem] md:text-[1.6rem]"}>
+								but sometimes, <span className="text-primary">stuck.</span>
+							</p>
+						</div>
 					</motion.h1>
 				</div>
+
 				<motion.p
 					initial={{ y: 50, opacity: 0 }}
 					whileInView={{ y: 0, opacity: 1 }}
 					viewport={{ once: true }}
 					transition={{ duration: 0.2, delay: 0.4 }}
-					className="text-textMuted/80 text-sm mb-8 md:text-base"
+					className="text-textMuted/80 text-sm mb-8 mt-2 md:text-base"
 				>
 					{"/ˌæləˈsɑːndroʊ/ — no meaning, just a fancy way to say my name"}
 				</motion.p>

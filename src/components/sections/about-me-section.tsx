@@ -24,9 +24,6 @@ export default function AboutMeSection() {
 						className="bg-cardBg/80 w-full max-w-[900px] relative rounded-2xl overflow-hidden border border-[#484848]/40  glow:bg-white/10"
 					>
 						<div className="p-8 grid gap-4 md:max-w-[70%]">
-							{/* <SectionTitleMotion>
-								<h2>About </h2>
-							</SectionTitleMotion> */}
 							<motion.div
 								initial={{ y: 50, opacity: 0 }}
 								whileInView={{ y: 0, opacity: 1 }}

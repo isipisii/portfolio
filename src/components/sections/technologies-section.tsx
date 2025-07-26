@@ -34,7 +34,7 @@ export default function TechnologiesSection() {
 			<div className="w-full max-w-[900px] flex flex-col items-start gap-8 relative">
 				<SectionTitleMotion>
 					<h2 className="text-headerText font-semibold text-2xl">Technologies</h2>
-					<span className="font-normal text-textMuted text-base">
+					<span className="font-normal text-textMuted text-sm md:text-base">
 						Tools I&apos;ve tinkered with, built stuff, and probably broke a few things too
 					</span>
 				</SectionTitleMotion>

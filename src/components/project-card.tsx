@@ -5,9 +5,8 @@ import { FaCodeBranch, FaLink } from "react-icons/fa6";
 
 export default async function ProjectCard({ project }: { project: TProject }) {
 	return (
-		<div className="w-full gap-6 flex md:flex-row flex-col items-start relative overflow-hidden p-4">
+		<div className="w-full gap-6 flex md:flex-row flex-col items-start relative overflow-hidden py-4">
 			<div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#02c39a,transparent_1px),linear-gradient(to_bottom,#02c39a,transparent_2px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_60%_at_60%_0%,#000_80%,transparent_110%)] opacity-15" />
-
 			<Image
 				src={project.src}
 				alt="project-image"
