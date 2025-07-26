@@ -39,7 +39,7 @@ export default function ContactSection() {
 						transition={{ duration: 0.2, delay: 0.5 }}
 						className="rounded-2xl p-3 bg-primary/80 text-white w-52 text-lg "
 					>
-						<a href="mailto:alebenig4@gmail.com">Send an email</a>
+						<a href="mailto:alessandrobenig@gmail.com">Send an email</a>
 					</motion.button>
 				</div>
 
