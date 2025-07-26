@@ -8,9 +8,9 @@ import { SiNextdotjs } from "react-icons/si";
 export default async function Home() {
 
   return (
-    <main className="w-full px-8 justify-center flex flex-col gap-12 items-center overflow-hidden">
+    <main className="w-full px-8 justify-center flex flex-col gap-10 items-center overflow-hidden">
       <HeroSection />
-      <AboutMeSection />
+      {/* <AboutMeSection /> */}
       <TechnologiesSection />
       <ProjectsSection />
       <ContactSection />
