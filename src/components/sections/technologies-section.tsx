@@ -7,6 +7,21 @@ import { IconType } from "react-icons";
 import { AnimatePresence, motion } from "framer-motion";
 import SectionTitleMotion from "../motions/section-title-motion";
 
+const containerVariants = {
+	hidden: {},
+	show: {
+		transition: {
+			staggerChildren: 0.05,
+			delayChildren: 0.2,
+		},
+	},
+};
+
+const itemVariants = {
+	hidden: { opacity: 0, y: 50 },
+	show: { opacity: 1, y: 0 },
+};
+
 export default function TechnologiesSection() {
 	const [isContainerHovered, setIsContainerHovered] = useState(false);
 	const [currentTech, setCurrentTech] = useState<{
@@ -16,14 +31,22 @@ export default function TechnologiesSection() {
 
 	return (
 		<section className="w-full flex justify-center py-[4rem]">
-			<div className=" w-full max-w-[1200px] flex flex-col items-start gap-8 relative">
+			<div className="w-full max-w-[900px] flex flex-col items-start gap-8 relative">
 				<SectionTitleMotion>
-					Technologies <br /> <span className="font-normal text-textMuted text-[25px]">I&apos;ve worked with</span>
+					<h2 className="text-headerText font-semibold text-2xl">Technologies</h2>
+					<span className="font-normal text-textMuted text-base">
+						Tools I&apos;ve tinkered with, built stuff, and probably broke a few things too
+					</span>
 				</SectionTitleMotion>
+
 				<GlowCapture>
 					<Glow>
-						<div
-							className="flex gap-2 flex-wrap justify-center md:justify-start items-center"
+						<motion.div
+							variants={containerVariants}
+							initial="hidden"
+							whileInView="show"
+							viewport={{ once: true }}
+							className="flex gap-2 flex-wrap justify-center items-center"
 							onMouseEnter={() => setIsContainerHovered(true)}
 							onMouseLeave={() => {
 								setIsContainerHovered(false);
@@ -32,22 +55,19 @@ export default function TechnologiesSection() {
 						>
 							{technologies.map((technology, index) => (
 								<motion.div
-									initial={{ y: 50, opacity: 0 }}
-									whileInView={{ y: 0, opacity: 1 }}
-									viewport={{ once: true }}
-									transition={{ duration: 0.1, delay: 0.2 + index * 0.04 }}
 									key={index}
-									className="bg-cardBg/80 hover:border-white rounded-xl glow:bg-primary/20  p-4 flex flex-col justify-center items-center gap-2 border border-[#484848]/40"
+									variants={itemVariants}
+									className="bg-cardBg/80 hover:border-primary rounded-3xl glow:bg-primary/20 p-4 flex flex-col justify-center items-center gap-2 border border-[#484848]/40"
 									onMouseEnter={() => {
 										if (isContainerHovered) {
 											setCurrentTech(technology);
 										}
 									}}
 								>
-									<technology.icon className="text-white/80 size-[35px]" />
+									<technology.icon className="text-white/80 size-[20px] md:size-[24px]" />
 								</motion.div>
 							))}
-						</div>
+						</motion.div>
 					</Glow>
 				</GlowCapture>
 
@@ -59,10 +79,10 @@ export default function TechnologiesSection() {
 							animate={{ opacity: 1, x: 0 }}
 							exit={{ opacity: 0, x: -50 }}
 							transition={{ duration: 0.1 }}
-							className="absolute right-0 -top-[3rem] md:bottom-0 -z-10 grid gap-4"
+							className="absolute right-0 -top-[1rem] md:bottom-0 -z-10"
 						>
-							<p className="text-white/10 font-semibold text-2xl text-center">{currentTech.name}</p>
-							<currentTech.icon className="text-white/10 md:size-[300px] size-[200px]" />
+							<p className="text-white/10 font-semibold text-xl text-center">{currentTech.name}</p>
+							<currentTech.icon className="text-white/10 md:size-[200px] size-[100px]" />
 						</motion.div>
 					)}
 				</AnimatePresence>

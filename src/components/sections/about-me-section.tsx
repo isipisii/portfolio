@@ -21,10 +21,12 @@ export default function AboutMeSection() {
 						whileInView={{ opacity: 1 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.2, delay: 0.2 }}
-						className="bg-cardBg/80 w-full max-w-[1200px] relative rounded-2xl overflow-hidden border border-[#484848]/40  glow:bg-white/10"
+						className="bg-cardBg/80 w-full max-w-[900px] relative rounded-2xl overflow-hidden border border-[#484848]/40  glow:bg-white/10"
 					>
 						<div className="p-8 grid gap-4 md:max-w-[70%]">
-							<SectionTitleMotion>About Me</SectionTitleMotion>
+							{/* <SectionTitleMotion>
+								<h2>About </h2>
+							</SectionTitleMotion> */}
 							<motion.div
 								initial={{ y: 50, opacity: 0 }}
 								whileInView={{ y: 0, opacity: 1 }}
@@ -33,7 +35,7 @@ export default function AboutMeSection() {
 								className="grid gap-4 z-10"
 							>
 								<p className="text-textMuted text-sm md:text-base leading-relaxed">
-									Hello again! I’m Alessandro Benig, {age} years old, and I recently earned my Bachelor’s degree in Information
+									Hello! I’m Alessandro Benig, {age} years old, and I recently earned my Bachelor’s degree in Information
 									Technology. My journey into web development began during the summer before my sophomore year, when I started
 									exploring how to build and style websites just for fun. That creative curiosity quickly turned into a passion that
 									has fueled my growth ever since.

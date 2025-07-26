@@ -7,17 +7,23 @@ import Underline from "@/assets/underline.svg";
 import { motion } from "framer-motion";
 
 export default function HeroSection() {
+	const birthday = new Date("2002-10-01");
+	const today = new Date();
+	const age =
+		today.getMonth() > birthday.getMonth() || (today.getMonth() === birthday.getMonth() && today.getDate() >= birthday.getDate())
+			? today.getFullYear() - birthday.getFullYear()
+			: today.getFullYear() - birthday.getFullYear() - 1;
+
 	return (
-		<section className="h-screen flex items-center justify-between max-w-[1200px] w-full relative">
-			<div className="grid gap-3">
+		<section className="mt-[150px] flex items-center justify-between max-w-[900px] w-full relative">
+			<div className="grid gap-2">
 				<motion.div
 					initial={{ y: 50, opacity: 0 }}
 					whileInView={{ y: 0, opacity: 1 }}
 					viewport={{ once: true }}
-					transition={{ duration: 0.2, delay: 1.2 }}
+					transition={{ duration: 0.2, delay: 0.4 }}
 				>
-					<p className="text-textMuted md:text-base text-sm mb-4">{"/ˌæləˈsɑːndroʊ/ — no meaning, just a fancy way to say my name"}</p>
-					<h1 className="text-white/90 text-5xl md:text-7xl font-bold">Alessandro Benig.</h1>
+					<h1 className="text-white/90 text-3xl md:text-5xl font-bold">Alessandro Benig.</h1>
 				</motion.div>
 
 				<div>
@@ -25,47 +31,65 @@ export default function HeroSection() {
 						initial={{ y: 50, opacity: 0 }}
 						whileInView={{ y: 0, opacity: 1 }}
 						viewport={{ once: true }}
-						transition={{ duration: 0.3, delay: 1.3 }}
-						className="text-5xl md:text-7xl font-bold bg-gradient-to-t from-[#acf773] to-[#68DC0E] bg-clip-text text-transparent"
+						transition={{ duration: 0.3, delay: 0.4 }}
+						className="text-3xl md:text-5xl font-bold bg-gradient-to-t  from-[#d1f7b5] to-[#02c39a] bg-clip-text text-transparent"
 					>
 						Full-stack{" "}
-						<span className="relative bg-gradient-to-t from-[#acf773] to-[#68DC0E] bg-clip-text text-transparent">
+						<span className="relative bg-gradient-to-t from-[#d1f7b5] to-[#02c39a] bg-clip-text text-transparent">
 							developer
 							<div className={just_me_again_down_here.className}>
-								<p className={"text-white/90 text-base md:text-[1.6rem] stuck absolute -right-[4rem] -rotate-12 -top-1"}>
+								<p className={"text-white/90 text-base md:text-[1.6rem] stuck absolute -right-[6rem] -rotate-12 -top-6"}>
 									but sometimes, <span className="text-primary">stuck.</span>
 								</p>
 							</div>
 						</span>
 					</motion.h1>
-					<motion.div
-						initial={{ opacity: 0 }}
-						whileInView={{ opacity: 1 }}
-						viewport={{ once: true }}
-						transition={{ duration: 0.3, delay: 1.8 }}
-					>
-						<Image src={Underline} width={700} height={20} alt="logo" className="w-[400px] md:w-[700px]" />
-					</motion.div>
 				</div>
 				<motion.p
 					initial={{ y: 50, opacity: 0 }}
 					whileInView={{ y: 0, opacity: 1 }}
 					viewport={{ once: true }}
-					transition={{ duration: 0.2, delay: 1.4 }}
-					className="text-textMuted text-sm md:text-base max-w-[500px]"
+					transition={{ duration: 0.2, delay: 0.4 }}
+					className="text-textMuted/80 text-sm mb-8 md:text-base"
 				>
-					A goal-driven and passionate full-stack developer based in the Philippines, solely focused on creating react applications.
+					{"/ˌæləˈsɑːndroʊ/ — no meaning, just a fancy way to say my name"}
 				</motion.p>
+
+				<motion.div
+					id="about"
+					initial={{ y: 50, opacity: 0 }}
+					whileInView={{ y: 0, opacity: 1 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.2, delay: 0.4 }}
+					className="grid gap-4 z-10"
+				>
+					<p className="text-textMuted text-sm md:text-base leading-relaxed">
+						Hello! I’m Alessandro Benig, {age} years old, and I recently earned my Bachelor’s degree in Information Technology. My journey
+						into software development began during the summer before my sophomore year, when I started exploring how to build and style
+						websites just for fun. That creative curiosity quickly turned into a passion that has fueled my growth ever since.
+						<br />
+						<br />
+						Although I have experience with full-stack development, I’m currently focused on crafting pixel-perfect frontend applications
+						— building responsive, accessible, and user-friendly interfaces using modern frameworks and tools. I’ve gained hands-on
+						experience through an internship, personal projects, and freelance work, which helped me apply what I’ve learned in real-world
+						scenarios and collaborate effectively with others.
+						<br />
+						<br />
+						Today, I continue to learn new technologies and build projects to sharpen my skills and stay ahead in the ever-evolving tech
+						industry. I’m also actively looking for frontend development opportunities where I can contribute, grow, and work with
+						passionate teams on meaningful projects.
+					</p>
+				</motion.div>
 			</div>
 
 			<motion.div
 				initial={{ opacity: 0 }}
 				whileInView={{ opacity: 1 }}
 				viewport={{ once: true }}
-				transition={{ duration: 0.3, delay: 2.2 }}
+				transition={{ duration: 0.3, delay: 0.8 }}
 				className="absolute translate-x-[10rem] right-0"
 			>
-				<Image src={HeroLogo} width={600} height={600} alt="logo" className="md:opacity-100 opacity-50" />
+				<Image src={HeroLogo} width={400} height={400} alt="logo" className="opacity-10" />
 			</motion.div>
 		</section>
 	);
