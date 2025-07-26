@@ -32,7 +32,7 @@ export default function Navbar() {
   return (
     <header
       className={twMerge(
-        "fixed w-full  z-20 flex justify-center transition duration-100 ease-in-out",
+        "fixed w-full z-20 flex justify-center transition duration-100 ease-in-out",
         showBg ? "bg-[#0F0F0F]/70 backdrop-blur" : null
       )}
     >

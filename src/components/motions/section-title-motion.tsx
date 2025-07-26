@@ -10,7 +10,6 @@ export default function SectionTitleMotion({ children, delay }: { children: Reac
 			whileInView={{ y: 0, opacity: 1 }}
 			viewport={{ once: true }}
 			transition={{ duration: 0.2, delay: delay || 0.4 }}
-			className=""
 		>
 			{children}
 		</motion.div>

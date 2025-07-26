@@ -36,7 +36,6 @@ export default function RootLayout({
 		<html lang="en" className="bg-background">
 			<body className={poppins.className}>
 				{modal}
-				<Navbar />
 				{children}
 				<Socials />
 			</body>

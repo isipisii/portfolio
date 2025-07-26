@@ -69,15 +69,15 @@ export default function HeroSection() {
 						websites just for fun. That creative curiosity quickly turned into a passion that has fueled my growth ever since.
 						<br />
 						<br />
-						Although I have experience with full-stack development, I’m currently focused on crafting pixel-perfect frontend applications
-						— building responsive, accessible, and user-friendly interfaces using modern frameworks and tools. I’ve gained hands-on
-						experience through an internship, personal projects, and freelance work, which helped me apply what I’ve learned in real-world
-						scenarios and collaborate effectively with others.
+						Although I have well-rounded experience with full-stack development, I have been focused on crafting pixel-perfect frontend
+						applications building responsive, accessible, and user-friendly interfaces using modern frameworks and tools. I’ve gained
+						hands-on experience through an internship, personal projects, and freelance work, which helped me apply what I’ve learned in
+						real-world scenarios and collaborate effectively with others.
 						<br />
 						<br />
 						Today, I continue to learn new technologies and build projects to sharpen my skills and stay ahead in the ever-evolving tech
-						industry. I’m also actively looking for frontend development opportunities where I can contribute, grow, and work with
-						passionate teams on meaningful projects.
+						industry. I’m also actively seeking opportunities as a full-stack, backend, or frontend developer where I can contribute,
+						grow, and collaborate with passionate teams on meaningful projects.
 					</p>
 				</motion.div>
 			</div>
