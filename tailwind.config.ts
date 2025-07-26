@@ -15,7 +15,7 @@ const config: Config = {
       },
       colors: {
         background: "#0F0F0F",
-        primary: "#68DC0E",
+        primary: "#02c39a",
         headerText: "#F7F7F7",
         textMuted: "#9E9F9D",
         cardBg: "#1C1B1B",
