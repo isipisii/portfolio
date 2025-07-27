@@ -7,7 +7,8 @@ import Socials from "@/components/layout/socials";
 
 const poppins = Poppins({ subsets: ["latin"], style: "normal", weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
 const TITLE = "Alessandro Benig";
-const DESCRIPTION = "A goal-driven and passionate full-stack developer based in the Philippines, solely focused on creating react applications.";
+const DESCRIPTION =
+	"A goal-driven and passionate full-stack developer based in the Philippines, with a strong focus on creating pixel-perfect front-end applications.";
 
 export const metadata: Metadata = {
 	title: TITLE,
@@ -15,14 +16,17 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: TITLE,
 		description: DESCRIPTION,
-		// url: `https://yourdomain.com/blog/${post.slug}`,
+		url: "https://alessandrobenig.vercel.app", // Replace with your actual domain
+		siteName: "Alessandro Benig",
 		images: [
 			{
 				url: ogImage.src,
 				width: 1200,
 				height: 630,
+				alt: "Alessandro Benig OG Image",
 			},
 		],
+		locale: "en_US",
 		type: "website",
 	},
 	twitter: {
@@ -32,7 +36,6 @@ export const metadata: Metadata = {
 		images: [ogImage.src],
 	},
 };
-
 export default function RootLayout({
 	children,
 }: Readonly<{
