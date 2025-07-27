@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import ogImage from "../assets/ale-og.png";
 import "./globals.css";
 import Navbar from "@/components/layout/nav-bar";
 import Socials from "@/components/layout/socials";
@@ -11,17 +12,24 @@ const DESCRIPTION = "A goal-driven and passionate full-stack developer based in 
 export const metadata: Metadata = {
 	title: TITLE,
 	description: DESCRIPTION,
-	icons: {
-		icon: "/logo.png",
-	},
 	openGraph: {
-		type: "website",
-		siteName: TITLE,
-		title: {
-			default: TITLE,
-			template: "Alessandro Benig's portfolio",
-		},
+		title: TITLE,
 		description: DESCRIPTION,
+		// url: `https://yourdomain.com/blog/${post.slug}`,
+		images: [
+			{
+				url: ogImage.src,
+				width: 1200,
+				height: 630,
+			},
+		],
+		type: "website",
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: TITLE,
+		description: DESCRIPTION,
+		images: [ogImage.src],
 	},
 };
 
