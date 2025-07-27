@@ -1,26 +1,29 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import ogImage from "../assets/ale-og.png";
 import "./globals.css";
-import Navbar from "@/components/layout/nav-bar";
 import Socials from "@/components/layout/socials";
 
 const poppins = Poppins({ subsets: ["latin"], style: "normal", weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
 const TITLE = "Alessandro Benig";
 const DESCRIPTION =
 	"A goal-driven and passionate full-stack developer based in the Philippines, with a strong focus on creating pixel-perfect front-end applications.";
+const URL = "https://alessandrobenig.vercel.app";
 
 export const metadata: Metadata = {
 	title: TITLE,
 	description: DESCRIPTION,
+	icons: {
+		icon: "/logo.png",
+	},
+
 	openGraph: {
 		title: TITLE,
 		description: DESCRIPTION,
-		url: "https://alessandrobenig.vercel.app", // Replace with your actual domain
+		url: URL,
 		siteName: "Alessandro Benig",
 		images: [
 			{
-				url: ogImage.src,
+				url: URL + "/opengraph-image.png",
 				width: 1200,
 				height: 630,
 				alt: "Alessandro Benig OG Image",
@@ -33,7 +36,7 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 		title: TITLE,
 		description: DESCRIPTION,
-		images: [ogImage.src],
+		images: [URL + "/opengraph-image.png"],
 	},
 };
 export default function RootLayout({
