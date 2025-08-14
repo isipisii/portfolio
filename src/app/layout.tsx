@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Socials from "@/components/layout/socials";
+import { PostHogProvider } from "@/components/providers";
 
 const poppins = Poppins({ subsets: ["latin"], style: "normal", weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
 const TITLE = "Alessandro Benig";
@@ -47,8 +48,10 @@ export default function RootLayout({
 	return (
 		<html lang="en" className="bg-background">
 			<body className={poppins.className}>
-				{children}
-				<Socials />
+				<PostHogProvider>
+					{children}
+					<Socials />
+				</PostHogProvider>
 			</body>
 		</html>
 	);

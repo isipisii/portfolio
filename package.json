@@ -12,6 +12,7 @@
     "@codaworks/react-glow": "^1.0.6",
     "framer-motion": "^11.1.9",
     "next": "14.2.3",
+    "posthog-js": "^1.260.1",
     "query-string": "^9.0.0",
     "react": "^18",
     "react-dom": "^18",
