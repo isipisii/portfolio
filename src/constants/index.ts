@@ -93,6 +93,42 @@ export type TProject = {
 	siteUrl?: string;
 };
 
+export const experiences = [
+	{
+		jobTitle: "Full-stack Developer Intern",
+		company: "DepEd Schools Division Office – Legazpi City",
+		summary:
+			"Designed and developed a centralized procurement and bidding management system that simplified the internal workflows for the Schools Division Office. Engaged directly with stakeholders to translate business needs into functional features. Worked with a fellow intern to build a portable desktop application for event attendance tracking.",
+		technologies: ["TypeScript", "Next.js", "Prisma", "PostgreSQL", "ShadcnUI", "TailwindCSS", "SvelteKit", "Tauri"],
+		timeline: "Jan – Jun 2025",
+	},
+	{
+		jobTitle: "Full-stack Developer",
+		company: "Freelance",
+		summary:
+			"Delivered diverse full-stack projects for clients, including an advanced electrical load scheduling and analysis app for an engineering thesis, a modern portfolio website for a graphic designer, and a slot reservation system for a local raffle business. Focused on building scalable, user-friendly solutions tailored to client needs while covering the full development cycle from design to deployment.",
+		technologies: [
+			"TypeScript",
+			"Next.js",
+			"Supabase",
+			"Hono",
+			"DrizzleORM",
+			"MERN",
+			"PostgreSQL",
+			"ShadcnUI",
+			"TailwindCSS",
+			"HTML",
+			"CSS",
+			"JavaScript",
+			"SvelteKit",
+			"Tauri",
+		],
+		timeline: "2022 – 2025",
+	},
+] as const;
+
+export type TExperience = typeof experiences[number]
+
 export const projects: TProject[] = [
 	{
 		name: "Procurement Management and Bids and Awards Control System (PMBACS)",

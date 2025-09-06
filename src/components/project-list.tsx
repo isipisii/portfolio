@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectContainerMotion from "./motions/project-container-motion";
+import CardContainerMotion from "./motions/card-container-motion";
 import ProjectCard from "./project-card";
 import { projects } from "@/constants";
 
@@ -12,9 +12,9 @@ export default function ProjectList({ renderAllProjects }: { renderAllProjects?:
 			}}
 		>
 			{(renderAllProjects ? projects : projects.slice(0, 3)).map((project, index) => (
-				<ProjectContainerMotion key={index}>
+				<CardContainerMotion key={index}>
 					<ProjectCard project={project} />
-				</ProjectContainerMotion>
+				</CardContainerMotion>
 			))}
 		</div>
 	);

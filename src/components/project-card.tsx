@@ -12,7 +12,7 @@ export default async function ProjectCard({ project }: { project: TProject }) {
 				alt="project-image"
 				width={350}
 				height={350}
-				className="z-10 rounded-3xl object-cover border-[#484848]/70 border"
+				className="z-10 rounded-3xl object-cover w-full md:w-[350px] border-[#484848]/70 border"
 			/>
 			<div className="z-10 md:self-end grid gap-4 w-full">
 				<div className="w-full gap-4 items-start flex justify-between">
@@ -40,7 +40,7 @@ export default async function ProjectCard({ project }: { project: TProject }) {
 
 				<div className="flex flex-wrap gap-2 max-w-[400px]">
 					{project.technologies.map((tech, index) => (
-						<p className="text-textMuted border border-[#484848]/40 bg-cardBg py-1 px-2 rounded-xl text-xs" key={index}>
+						<p className="border border-[#484848]/40 bg-primary/5 text-primary py-1 px-2 rounded-xl text-xs" key={index}>
 							{tech}
 						</p>
 					))}

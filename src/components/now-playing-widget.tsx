@@ -43,20 +43,19 @@ export default function NowPlayingWidget() {
 							)}
 
 							{/* song details */}
-						
-								<div className="grid gap-1">
-									{nowPlaying?.title && nowPlaying?.title.length > 15 && error !== "not-playing" ? (
-										<SongTitleMarquee songTitle={nowPlaying?.title} />
-									) : (
-										<p className="text-white text-sm font-medium">
-											{error === "not-playing" || !nowPlaying ? "Alessandro is" : nowPlaying?.title}
-										</p>
-									)}
-									<p className="text-textMuted text-xs  leading-tight">
-										{error === "not-playing" || !nowPlaying ? "currently not playing on spotify" : nowPlaying?.artist}
+
+							<div className="grid gap-1">
+								{nowPlaying?.title && nowPlaying?.title.length > 15 && error !== "not-playing" ? (
+									<SongTitleMarquee songTitle={nowPlaying?.title} />
+								) : (
+									<p className="text-white text-sm font-medium">
+										{error === "not-playing" || !nowPlaying ? "Alessandro is" : nowPlaying?.title}
 									</p>
-								</div>
-						
+								)}
+								<p className="text-textMuted text-xs  leading-tight">
+									{error === "not-playing" || !nowPlaying ? "currently not playing on spotify" : nowPlaying?.artist}
+								</p>
+							</div>
 						</div>
 						{error === "not-playing" || !nowPlaying ? <GoCloudOffline className=" size-5 text-white/60" /> : <SoundWave />}
 					</div>
@@ -82,7 +81,7 @@ export default function NowPlayingWidget() {
 
 function Spinner() {
 	return (
-		<div className="rounded-lg border border-[#484848]/40 bg-cardBg/80 p-4">
+		<div className="rounded-lg border border-[#484848]/40 bg-[#11101088] p-4">
 			<svg
 				aria-hidden="true"
 				className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-[#1FE064]"
@@ -109,14 +108,14 @@ function SongTitleMarquee({ songTitle }: { songTitle: string }) {
 			<div className="wrapper">
 				<ul className="marquee">
 					{[...Array(5)].map((_, index) => (
-						<li className="text-white text-sm md:text-base font-medium whitespace-nowrap" key={index}>
+						<li className="text-white text-sm font-medium whitespace-nowrap" key={index}>
 							{songTitle}
 						</li>
 					))}
 				</ul>
 				<ul className="marquee2">
 					{[...Array(5)].map((_, index) => (
-						<li className="text-white text-sm md:text-base font-medium whitespace-nowrap" key={index}>
+						<li className="text-white text-sm font-medium whitespace-nowrap" key={index}>
 							{songTitle}
 						</li>
 					))}
