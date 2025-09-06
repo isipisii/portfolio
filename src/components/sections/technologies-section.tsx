@@ -47,22 +47,14 @@ export default function TechnologiesSection() {
 							whileInView="show"
 							viewport={{ once: true }}
 							className="flex gap-2 flex-wrap justify-center items-center"
-							onMouseEnter={() => setIsContainerHovered(true)}
-							onMouseLeave={() => {
-								setIsContainerHovered(false);
-								setCurrentTech(null);
-							}}
 						>
 							{technologies.map((technology, index) => (
 								<motion.div
 									key={index}
 									variants={itemVariants}
 									className="bg-cardBg/80 hover:border-primary rounded-3xl glow:bg-primary/20 p-4 flex flex-col justify-center items-center gap-2 border border-[#484848]/40"
-									onMouseEnter={() => {
-										if (isContainerHovered) {
-											setCurrentTech(technology);
-										}
-									}}
+									onMouseEnter={() => setCurrentTech(technology)}
+									onMouseLeave={() => setCurrentTech(null)}
 								>
 									<technology.icon className="text-white/80 size-[20px] md:size-[24px]" />
 								</motion.div>

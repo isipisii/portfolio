@@ -37,7 +37,7 @@ export default function ContactSection() {
 						whileInView={{ y: 0, opacity: 1 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.2, delay: 0.5 }}
-						className="rounded-2xl p-3 bg-primary/80 text-white w-52 text-lg "
+						className="rounded-2xl p-3 bg-primary/80 text-white w-52 text-base md:text-lg"
 					>
 						<a href="mailto:alessandrobenig@gmail.com">Send an email</a>
 					</motion.button>

@@ -109,14 +109,14 @@ function SongTitleMarquee({ songTitle }: { songTitle: string }) {
 			<div className="wrapper">
 				<ul className="marquee">
 					{[...Array(5)].map((_, index) => (
-						<li className="text-white text-sm md:text-base font-medium whitespace-nowrap" key={index}>
+						<li className="text-white text-sm font-medium whitespace-nowrap" key={index}>
 							{songTitle}
 						</li>
 					))}
 				</ul>
 				<ul className="marquee2">
 					{[...Array(5)].map((_, index) => (
-						<li className="text-white text-sm md:text-base font-medium whitespace-nowrap" key={index}>
+						<li className="text-white text-sm font-medium whitespace-nowrap" key={index}>
 							{songTitle}
 						</li>
 					))}

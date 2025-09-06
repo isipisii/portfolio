@@ -8,11 +8,11 @@ export default function ProjectsSection() {
 		<section id="projects" className="py-[7rem] w-full flex justify-center">
 			<div className="w-full max-w-[900px] grid gap-8">
 				<SectionTitleMotion>
-					<div className="flex items-center justify-between gap-4">
+					<div className="flex md:items-center flex-col md:flex-row justify-between gap-4">
 						<div className="flex-1">
 							<h2 className="text-headerText font-semibold text-2xl">Projects</h2>
 							<span className="font-normal text-textMuted text-sm md:text-base">
-								Projects I built that left a noticeable dent on the internet
+								Projects I built that probably left some dents on the internet
 							</span>
 						</div>
 						<Link href="/projects">
