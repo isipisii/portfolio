@@ -4,7 +4,7 @@ import RoundedGradient from "../rounded-gradient";
 
 export default function ExperiencesSection() {
 	return (
-		<section id="projects" className="py-[5rem] w-full flex justify-center">
+		<section id="experiences" className="py-[5rem] w-full flex justify-center">
 			<div className="w-full max-w-[900px] grid gap-8 relative">
 				<SectionTitleMotion>
 					<div className="flex-1">
