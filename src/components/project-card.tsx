@@ -12,7 +12,7 @@ export default async function ProjectCard({ project }: { project: TProject }) {
 				alt="project-image"
 				width={350}
 				height={350}
-				className="z-10 rounded-3xl object-cover w-full md:w-[350px] border-[#484848]/70 border"
+				className="z-10 rounded-3xl object-cover w-full md:w-[350px] border-[#484848]/30 border"
 			/>
 			<div className="z-10 md:self-end grid gap-4 w-full">
 				<div className="w-full gap-4 items-start flex justify-between">
@@ -27,9 +27,11 @@ export default async function ProjectCard({ project }: { project: TProject }) {
 						<p className="text-white/50 font-light text-sm">{project.description}</p>
 					</div>
 					<div className="flex items-center gap-3">
-						<a href={project.repoUrl} target="_blank">
-							<SiGithub className="size-[20px] md:size-[24px] text-white/75 " />
-						</a>
+						{project.repoUrl && (
+							<a href={project.repoUrl} target="_blank">
+								<SiGithub className="size-[20px] md:size-[24px] text-white/75 " />
+							</a>
+						)}
 						{project.siteUrl && (
 							<a href={project.siteUrl} target="_blank">
 								<FaLink className="size-[20px] md:size-[24px] text-white/75 " />
