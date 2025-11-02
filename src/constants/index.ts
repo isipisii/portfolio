@@ -32,11 +32,13 @@ import {
 	SiHono,
 	SiBun,
 	SiDrizzle,
+	SiRedis,
 } from "react-icons/si";
 
 import evently from "../assets/projects/evently.jpg";
 import heda from "../assets/projects/heda.png";
 import pmbacs from "../assets/projects/PMBACS.png";
+import probuff from "../assets/projects/probuff-app-poster.png";
 import eqph from "../assets/projects/eqph.jpg";
 import spotifile from "../assets/projects/spotifle.png";
 import threads from "../assets/projects/threads.jpg";
@@ -81,6 +83,7 @@ export const technologies = [
 	{ name: "Expo", icon: SiExpo },
 	{ name: "HonoJS", icon: SiHono },
 	{ name: "Bun", icon: SiBun },
+	{ name: "Redis", icon: SiRedis },
 ];
 
 export type TProject = {
@@ -127,9 +130,34 @@ export const experiences = [
 	},
 ] as const;
 
-export type TExperience = typeof experiences[number]
+export type TExperience = (typeof experiences)[number];
 
 export const projects: TProject[] = [
+	{
+		name: "ProBuff",
+		src: probuff,
+		description:
+			"A custom car wash and auto-detailing reservation system developed as a capstone project for IT Students from STI, built for a single business owner to streamline booking, payment processing, and day-to-day operations.",
+		technologies: [
+			"TypeScript",
+			"NextJS",
+			"ReactJS",
+			"Tanstack Query",
+			"Prisma",
+			"PostgreSQL",
+			"ShadcnUI",
+			"SSE",
+			"Redis Pub/Sub",
+			"Cron",
+			"Hono",
+			"Better Auth",
+			"Supabase",
+			"Xendit",
+			"Bun",
+			"Upstash",
+		],
+		siteUrl: "https://probuff.vercel.app",
+	},
 	{
 		name: "Procurement Management and Bids and Awards Control System (PMBACS)",
 		src: pmbacs,
