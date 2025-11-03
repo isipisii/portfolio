@@ -143,7 +143,7 @@ export const projects: TProject[] = [
 			"NextJS",
 			"ReactJS",
 			"Tanstack Query",
-			"Prisma",
+			"DrizzleORM",
 			"PostgreSQL",
 			"ShadcnUI",
 			"SSE",
