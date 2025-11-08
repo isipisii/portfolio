@@ -1,90 +1,122 @@
 "use client";
 
 import Image from "next/image";
-import { useGetNowPlaying } from "@/hooks/use-get-now-playing";
+import { TTrack, useGetNowPlaying } from "@/hooks/use-get-now-playing";
 import SoundWave from "./sound-wave";
 import { GoCloudOffline } from "react-icons/go";
 import { IoIosMusicalNote } from "react-icons/io";
 
 export default function NowPlayingWidget() {
-	const { nowPlaying, error } = useGetNowPlaying();
-	const timePlayed = new Date(nowPlaying?.timePlayed as number);
-	const totalTime = new Date(nowPlaying?.timeTotal as number);
-	const timePercentage = Math.round((Number(nowPlaying?.timePlayed) / Number(nowPlaying?.timeTotal)) * 100);
+	const { nowPlaying, latestPlayed, error } = useGetNowPlaying();
 
-	const formattedTimePlayed = `${timePlayed.getMinutes().toString().padStart(2, "0")}:${timePlayed.getSeconds().toString().padStart(2, "0")}`;
+	if (!nowPlaying && !latestPlayed) return <Spinner />;
 
-	const formattedTotalTime = `${totalTime.getMinutes().toString().padStart(2, "0")}:${totalTime.getSeconds().toString().padStart(2, "0")}`;
+	const isMainPlaying = !!nowPlaying;
 
-	if (error === "not-playing" || nowPlaying) {
-		return (
-			<div className="flex flex-col gap-3 w-full max-w-[450px]">
-				{nowPlaying && <p className="text-textMuted text-center text-sm md:text-base">I&apos;m currently listening to:</p>}
-				{/* widget card */}
-				<a
-					href={error === "not-playing" ? "https://open.spotify.com/user/22wcdi46uy5zxbmv5joaaumaa" : nowPlaying?.songUrl}
-					target="_blank"
-					className="p-4 grid gap-4 rounded-2xl border border-[#484848]/40 bg-[#11101088] backdrop-blur-lg"
-				>
-					<div className="flex gap-4 justify-between">
-						<div className="flex gap-3 items-start">
-							{error === "not-playing" || !nowPlaying?.albumImageUrl ? (
-								<div className="border-[#484848]/40 border grid place-content-center size-[45px] rounded-md">
-									<IoIosMusicalNote className=" size-7 text-white/60" />
-								</div>
-							) : (
-								<Image
-									src={nowPlaying?.albumImageUrl}
-									width={45}
-									height={45}
-									alt="album-url"
-									className="rounded-md border border-[#484848]/40"
-								/>
-							)}
+	return (
+		<div className="flex flex-col gap-3 w-full max-w-[450px]">
+			{nowPlaying && <p className="text-textMuted text-center text-sm md:text-base">I&apos;m currently listening to:</p>}
 
-							{/* song details */}
+			<div className="flex flex-col gap-2">
+				{/* Main track card (currently playing) */}
+				{nowPlaying && error !== "not-playing" && (
+					<TrackCard
+						track={nowPlaying}
+						isPlaying={isMainPlaying}
+						showProgress={isMainPlaying}
+						label={!isMainPlaying ? "Recently Played" : undefined}
+					/>
+				)}
 
-							<div className="grid gap-1">
-								{nowPlaying?.title && nowPlaying?.title.length > 15 && error !== "not-playing" ? (
-									<SongTitleMarquee songTitle={nowPlaying?.title} />
-								) : (
-									<p className="text-white text-sm font-medium">
-										{error === "not-playing" || !nowPlaying ? "Alessandro is" : nowPlaying?.title}
-									</p>
-								)}
-								<p className="text-textMuted text-xs  leading-tight">
-									{error === "not-playing" || !nowPlaying ? "currently not playing on spotify" : nowPlaying?.artist}
-								</p>
-							</div>
-						</div>
-						{error === "not-playing" || !nowPlaying ? <GoCloudOffline className=" size-5 text-white/60" /> : <SoundWave />}
+				{/* Show latest played track if not playing */}
+				{latestPlayed && error === "not-playing" && (
+					<TrackCard track={latestPlayed} isPlaying={false} showProgress={false} label="Recently Played" />
+				)}
+			</div>
+		</div>
+	);
+}
+
+function TrackCard({
+	track,
+	isPlaying,
+	showProgress = false,
+	offlineFallback = false,
+	label,
+}: {
+	track: TTrack;
+	isPlaying: boolean;
+	showProgress?: boolean;
+	offlineFallback?: boolean;
+	label?: string;
+}) {
+	const timePlayed = new Date(track.timePlayed);
+	const totalTime = new Date(track.timeTotal);
+	const timePercentage = track.timeTotal ? Math.round((track.timePlayed / track.timeTotal) * 100) : 0;
+
+	const formattedTime = (date: Date) => `${date.getMinutes().toString().padStart(2, "0")}:${date.getSeconds().toString().padStart(2, "0")}`;
+
+	return (
+		<a
+			href={offlineFallback ? "https://open.spotify.com/user/22wcdi46uy5zxbmv5joaaumaa" : track.songUrl}
+			target="_blank"
+			className="p-4 grid gap-4 rounded-2xl border border-[#484848]/40 bg-[#11101088] backdrop-blur-lg"
+		>
+			<div className="flex gap-3 items-start">
+				{/* Album image or fallback */}
+				{offlineFallback || !track.albumImageUrl ? (
+					<div className="border-[#484848]/40 border grid place-content-center w-[45px] h-[45px] rounded-md">
+						<IoIosMusicalNote className="w-6 h-6 text-white/60" />
+					</div>
+				) : (
+					<Image src={track.albumImageUrl} width={45} height={45} alt="album" className="rounded-md border border-[#484848]/40" />
+				)}
+
+				{/* Song details */}
+				<div className="grid gap-1 w-full ">
+					<div className="flex items-center gap-4 w-full justify-between">
+						{track.title.length > 15 ? (
+							<SongTitleMarquee songTitle={track.title} />
+						) : (
+							<p className="text-white text-sm font-medium">{track.title}</p>
+						)}
+
+						{/* Right side indicator */}
+						{offlineFallback ? (
+							<GoCloudOffline className="w-5 h-5 text-white/60" />
+						) : isPlaying ? (
+							<SoundWave />
+						) : label ? (
+							<span className="text-white text-[0.65rem] md:text-xs px-2 py-1 bg-white/5 rounded-xl shrink-0">{label}</span>
+						) : null}
 					</div>
 
-					{/* song progress */}
-					{error !== "not-playing" && nowPlaying && (
-						<div className="w-full grid gap-2">
-							<div className="w-full bg-white/10 h-1 rounded-full">
-								<div style={{ width: `${timePercentage}%` }} className="h-1 bg-[#1FE064] rounded-full" />
-							</div>
-							<div className="flex items-center justify-between">
-								<p className="text-textMuted text-xs">{formattedTimePlayed}</p>
-								<p className="text-textMuted text-xs">{formattedTotalTime}</p>
-							</div>
-						</div>
-					)}
-				</a>
+					<p className="text-textMuted text-xs leading-tight">{track.artist}</p>
+				</div>
 			</div>
-		);
-	}
-	return <Spinner />;
+
+			{/* Progress bar */}
+			{showProgress && track.timeTotal > 0 && (
+				<div className="w-full grid gap-2 mt-2">
+					<div className="w-full bg-white/10 h-1 rounded-full">
+						<div style={{ width: `${timePercentage}%` }} className="h-1 bg-[#1FE064] rounded-full" />
+					</div>
+					<div className="flex items-center justify-between">
+						<p className="text-textMuted text-xs">{formattedTime(timePlayed)}</p>
+						<p className="text-textMuted text-xs">{formattedTime(totalTime)}</p>
+					</div>
+				</div>
+			)}
+		</a>
+	);
 }
 
 function Spinner() {
 	return (
-		<div className="rounded-lg border border-[#484848]/40 bg-[#11101088] p-4">
+		<div className="rounded-lg border border-[#484848]/40 bg-[#11101088] p-4 grid place-items-center">
 			<svg
 				aria-hidden="true"
-				className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-[#1FE064]"
+				className="w-8 h-8 text-gray-200 animate-spin fill-[#1FE064]"
 				viewBox="0 0 100 101"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
@@ -104,18 +136,18 @@ function Spinner() {
 
 function SongTitleMarquee({ songTitle }: { songTitle: string }) {
 	return (
-		<article className="overflow-hidden w-[200px] md:w-[250px] whitespace-nowrap flex">
+		<article className="overflow-hidden w-[150px] sm:w-[200px] md:w-[220px] whitespace-nowrap flex">
 			<div className="wrapper">
 				<ul className="marquee">
-					{[...Array(5)].map((_, index) => (
-						<li className="text-white text-sm font-medium whitespace-nowrap" key={index}>
+					{[...Array(5)].map((_, i) => (
+						<li className="text-white text-sm font-medium whitespace-nowrap" key={i}>
 							{songTitle}
 						</li>
 					))}
 				</ul>
 				<ul className="marquee2">
-					{[...Array(5)].map((_, index) => (
-						<li className="text-white text-sm font-medium whitespace-nowrap" key={index}>
+					{[...Array(5)].map((_, i) => (
+						<li className="text-white text-sm font-medium whitespace-nowrap" key={i}>
 							{songTitle}
 						</li>
 					))}
